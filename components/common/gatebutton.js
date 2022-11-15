@@ -41,9 +41,9 @@ export default function GateButton({ action, txt }) {
   return (
     <View
       style={{
-        width: 80,
-        height: 130,
-        marginHorizontal: "35%",
+        width: 60,
+        height: 100,
+        marginHorizontal: "40%",
       }}
     >
       <View style={styles.backgate}>
@@ -65,7 +65,7 @@ export default function GateButton({ action, txt }) {
               fontFamily: "Leky",
               fontSize: 12,
               textAlign: "center",
-              paddingTop: 30,
+              paddingTop: 25,
             }}
           >
             {txt}

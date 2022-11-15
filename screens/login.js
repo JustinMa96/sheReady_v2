@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     height: 5,
     width: 5,
     borderRadius: 5 / 2,
-    marginTop: 59,
+    marginTop: 40,
     marginLeft: 15,
     marginRight: 15,
   },
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
 
   separator: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "flex-start",
   },
 });
