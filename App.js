@@ -13,6 +13,7 @@ import Shop from "./screens/shop";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
 import Test from "./screens/test";
+// d
 
 const Stack = createNativeStackNavigator();
 

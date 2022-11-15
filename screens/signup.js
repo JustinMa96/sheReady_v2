@@ -11,6 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 import MyTextInput from "../components/common/mytextinput";
 import GateButton from "../components/common/gatebutton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -50,8 +51,23 @@ export default function Signup({ navigation }) {
         const user = await createUserWithEmailAndPassword(
           auth,
           email,
+          userName,
           password
-        );
+        ).then(async (re) => {
+          try {
+            const docRef = await addDoc(
+              collection(db, "users", auth.currentUser.uid),
+              {
+                uid: auth.currentUser.uid,
+                displayName: userName,
+                email: email,
+              }
+            );
+            console.log("Document written with ID: ", docRef.id);
+          } catch (e) {
+            console.error("Error adding document: ", e);
+          }
+        });
         console.log(user);
         Alert.alert(
           "Register Account",
