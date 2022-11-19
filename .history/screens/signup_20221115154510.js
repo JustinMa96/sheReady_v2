@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc,setDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import MyTextInput from "../components/common/mytextinput";
 import GateButton from "../components/common/gatebutton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -53,10 +53,10 @@ export default function Signup({ navigation }) {
           email,
           userName,
           password
-        ).then(async () => {
+        ).then(async (re) => {
           try {
-            const docRef = await doc(
-              setDoc(db, "users", auth.currentUser.uid),
+            const docRef = await addDoc(
+              collection(db, "users", auth.currentUser.uid),
               {
                 uid: auth.currentUser.uid,
                 displayName: userName,
