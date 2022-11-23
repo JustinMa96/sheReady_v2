@@ -84,7 +84,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/SC_Home/community.png")}
+                source={require("../../assets/common/footer/community.png")}
               />
               <Text
                 style={[styles.text, {
@@ -103,7 +103,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/common/goals.png")}
+                source={require("../../assets/common/footer/goals.png")}
               />
               <Text
                 style={[styles.text, {
@@ -123,7 +123,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text_home,
                 }]}
-                source={require("../../assets/common/home.png")}
+                source={require("../../assets/common/footer/home.png")}
               />
               <Text
                 style={[styles.text, {
@@ -142,7 +142,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/common/wins.png")}
+                source={require("../../assets/common/footer/wins.png")}
               />
               <Text
                 style={[styles.text, {
@@ -161,7 +161,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/common/setting.png")}
+                source={require("../../assets/common/footer/setting.png")}
               />
               <Text
                 style={[styles.text, {

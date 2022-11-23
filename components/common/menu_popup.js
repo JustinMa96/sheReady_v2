@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 
 export default function Menu_Popup({
   // onPressAction = {},
-  imgSrc = require("../../assets/common/profile.png"),
+  imgSrc = require("../../assets/common/profile1.png"),
   close,
   small,
   action,
