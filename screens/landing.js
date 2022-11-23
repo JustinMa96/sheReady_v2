@@ -33,7 +33,7 @@ export default function Landing({ navigation }) {
         <View style={styles.imgCont}>
           <Image
             style={styles.img1}
-            source={require("../assets/Landing/SheReady.gif")}
+            source={require("../assets/SC_Landing/SheReady.gif")}
           />
         </View>
 
