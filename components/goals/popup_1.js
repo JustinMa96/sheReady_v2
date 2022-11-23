@@ -39,11 +39,11 @@ const PopUp1 = ({ action }) => {
     borderTopLeftRadius: 180,
     borderTopRightRadius: 180,
     elevation: 5,
-    alignSelf: "center", 
+    alignSelf: "center",
   };
 
-  const containerPop2Style = {  
-   
+  const containerPop2Style = {
+
   };
 
   const styles = StyleSheet.create({
@@ -82,7 +82,7 @@ const PopUp1 = ({ action }) => {
       borderTopLeftRadius: 180,
       borderTopRightRadius: 180,
       elevation: 5,
-      alignSelf: "center", 
+      alignSelf: "center",
       justifyContent: "center",
       borderColor: "white",
       borderWidth: 1,
@@ -91,14 +91,14 @@ const PopUp1 = ({ action }) => {
     },
 
     bottomLine: {
-      alignSelf: "center", 
-      borderBottomColor: "white", 
-      borderBottomWidth: 1, 
-      paddingHorizontal: 20, 
+      alignSelf: "center",
+      borderBottomColor: "white",
+      borderBottomWidth: 1,
+      paddingHorizontal: 20,
       paddingBottom: 20
     }
 
-    
+
   });
 
   return (
@@ -106,10 +106,10 @@ const PopUp1 = ({ action }) => {
       <Modal
           visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={containerStyle}    
-        > 
+          contentContainerStyle={containerStyle}
+        >
         <View style={styles.containerStyle2} >
-          <Text style={styles.title}>Task</Text>        
+          <Text style={styles.title}>Task</Text>
           <View style={styles.bottomLine}>
           <Text style={[styles.text, {marginBottom: 10}]}> Get the mentor's advice </Text>
           <Text style={styles.text}> Due: Nov, 28, 2022</Text>
@@ -125,7 +125,7 @@ const PopUp1 = ({ action }) => {
               <Text style={styles.textL}>your task for</Text>
               <Text style={styles.textL}>today?</Text>
             </View>
-  
+
             <View
               style={{
                 flexDirection: "column",
@@ -140,10 +140,10 @@ const PopUp1 = ({ action }) => {
                 source={require("../../assets/Goal/minus.png")}
                 style={{width: 30, height: 30, }}
               />
-            </TouchableOpacity> 
+            </TouchableOpacity>
 
                 <Text style={styles.textL}>
-                {count}  
+                {count}
                 <Text style={styles.text}> of</Text> 6
                 </Text>
 
@@ -152,8 +152,8 @@ const PopUp1 = ({ action }) => {
                 source={require("../../assets/Goal/plus.png")}
                 style={{width: 30, height: 30, }}
               />
-            </TouchableOpacity> 
-          </View> 
+            </TouchableOpacity>
+          </View>
 
             </View>
           </View>
@@ -162,7 +162,7 @@ const PopUp1 = ({ action }) => {
             mode="outlined"
             style={styles.button}
             onPressOut={hideModal}
-            textColor="white" 
+            textColor="white"
             // onPress={showPop2}
           > Done
           </Button>
@@ -176,8 +176,8 @@ const PopUp1 = ({ action }) => {
         >
           { pop2Visible? <PopUp2 action={()=>setPop2Visible(false)} /> : null }
 
-      </Modal> 
-    
+      </Modal>
+
     </View>
   );
 };

@@ -187,14 +187,14 @@ const styles = StyleSheet.create({
   },
 
   exampleCont: {
-    backgroundColor: "#ECD8D0", 
-    borderRadius: 15, 
-    width: "fit-content", 
-    marginVertical: 5, 
+    backgroundColor: "#ECD8D0",
+    borderRadius: 15,
+    width: "fit-content",
+    marginVertical: 5,
     marginRight: 10,
-   
+
   },
-  
+
 });
 
 export default function TaskPopup({ action }) {
@@ -358,17 +358,17 @@ export default function TaskPopup({ action }) {
 
               <View style={{flexDirection: "row", flexWrap: "wrap" }}>
               <View style={styles.exampleCont}>
-                <Text style={styles.example}>Readership Skills;</Text> 
-              </View> 
+                <Text style={styles.example}>Readership Skills;</Text>
+              </View>
               <View style={styles.exampleCont}>
-              <Text style={styles.example}>Communication Skills;</Text>  
+              <Text style={styles.example}>Communication Skills;</Text>
               </View>
               <View style={styles.exampleCont}>
               <Text style={styles.example}>Time Management Skills;</Text>
-              </View> 
+              </View>
             </View>
 
-            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5, marginTop: 10}]}>Pick Existing Goal</Text>  
+            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5, marginTop: 10}]}>Pick Existing Goal</Text>
             <Picker
               style={styles.step1_picker}
               selectedValue={selectedCategory}
@@ -998,7 +998,7 @@ export default function TaskPopup({ action }) {
 
       <View style={styles.buttoncont}>
       <TouchableOpacity>
-  
+
         {/* {setpnum === 0 && (
           <View style={{flexDirection: "row"}}>
           <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
@@ -1018,7 +1018,7 @@ export default function TaskPopup({ action }) {
         )}
         </TouchableOpacity>
       </View>
-{/* 
+{/*
       <View style={styles.stepcont}></View>
       {setpnum === 0 && (
         <Image

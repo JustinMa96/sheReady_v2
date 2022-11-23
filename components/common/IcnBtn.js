@@ -7,7 +7,7 @@ const IcnBtn = (props) => {
     <TouchableOpacity style={styles.button} onPress={props.onPress}>
       <Image style={styles.img} source={props.img} resizeMode="contain"/>
       <Text style={styles.text}>{props.title}</Text>
- 
+
     </TouchableOpacity>
   );
 };
