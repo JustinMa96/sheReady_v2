@@ -21,7 +21,7 @@ import Footer_Menu from "../components/common/footer_menu.js";
 
 const styles = StyleSheet.create({
   homecont: {
-    height: "100vh",
+    height: "100%",
     flex: 1,
     alignItems: "center",
     flexDirection: "column",
@@ -180,7 +180,7 @@ export default function Testhome({ navigation }) {
                   <View
                     style={{ alignContent: "center", padding: "20%", zIndex: 2 }}
                   >
-                    <Text style={{ textAlign: "center", padding: "0" }}>
+                    <Text style={{ textAlign: "center", padding: 0 }}>
                       No task yet.
                     </Text>
                     <Text>Tap the “+” below to get started.</Text>

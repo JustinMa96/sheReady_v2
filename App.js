@@ -17,7 +17,6 @@ import Testgoal from "./screens/testgoal";
 import Testhome from "./screens/testhome";
 import Testsetting from "./screens/testsetting";
 import Testshop from "./screens/testshop";
-// d
 
 const Stack = createNativeStackNavigator();
 
