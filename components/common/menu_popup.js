@@ -184,7 +184,7 @@ export default function Menu_Popup({
         <TouchableOpacity style={styles.doorhandleCont}>
           <Image
             style={styles.doorhandle}
-            source={require("../../assets/public/doorhandle.png")}
+            source={require("../../assets/common/doorhandle.png")}
             resizeMode="contain"
           />
         </TouchableOpacity>

@@ -192,7 +192,7 @@ export default function Testhome({ navigation }) {
                     <Button onPress={showModal}>
                       <Image
                         style={styles.circle}
-                        source={require("../assets/Home/add.png")}
+                        source={require("../assets/SC_Home/add.png")}
                       />
                     </Button>
                   </View>
