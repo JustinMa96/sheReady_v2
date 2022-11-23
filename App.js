@@ -37,7 +37,7 @@ const MyTheme = {
 export default function App() {
   const [fontsLoaded] = useFonts({
     Leky: require("./assets/fonts/LekyCalgriaPersonalUse-ywJRd.ttf"),
-    Comfortaa: require("./assets/fonts/Ubuntu-Light.ttf"),
+    Comfortaa: require("./assets/fonts/Comfortaa-Regular.ttf"),
     South: require("./assets/fonts/SouthEpic-Decorative.otf"),
   });
 
