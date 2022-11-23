@@ -6,6 +6,7 @@ import TextButton from "../components/common/textbutton";
 
 const styles = StyleSheet.create({
   container: {
+    background: "#efe1d5",
     height: "100%",
   },
 
