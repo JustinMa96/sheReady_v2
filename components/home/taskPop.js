@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
   },
 
   buttoncont: {
-    flexDirection: "row",
     marginTop: 50,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   btn: {
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
     borderColor: "#484644",
     borderWidth: 1,
     borderRadius: 25,
-    marginTop: 10,
-    marginHorizontal: 30,
+    margin: 10,
+    marginHorizontal: 30
   },
 
   buttontxt: {
@@ -997,26 +998,27 @@ export default function TaskPopup({ action }) {
 
       <View style={styles.buttoncont}>
       <TouchableOpacity>
-        {setpnum > 0 && (
-          <Button style={styles.btn} onPress={onBack}>
-            <Text style={styles.buttontxt}>Back</Text>
-          </Button>
-        )}
+  
+        {/* {setpnum === 0 && (
+          <View style={{flexDirection: "row"}}>
+          <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
+          <Button style={styles.btn} onPress={onNext} textColor="black" labelStyle={styles.buttontxt}> Next</Button>
+          </View>
+        )} */}
 
         {setpnum < 3 && (
-          <Button style={styles.btn} onPress={onNext}>
-            <Text style={styles.buttontxt}>Next</Text>
-          </Button>
+          <View style={{flexDirection: "row"}}>
+          <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
+          <Button style={styles.btn} onPress={onNext} textColor="black" labelStyle={styles.buttontxt}> Next</Button>
+          </View>
         )}
 
         {setpnum === 3 && (
-          <Button style={styles.btn} onPress={action}>
-            <Text style={styles.buttontxt}>Done</Text>
-          </Button>
+          <Button style={styles.btn} onPress={action} textColor="black" labelStyle={styles.buttontxt}>Done</Button>
         )}
         </TouchableOpacity>
       </View>
-
+{/* 
       <View style={styles.stepcont}></View>
       {setpnum === 0 && (
         <Image
@@ -1031,7 +1033,7 @@ export default function TaskPopup({ action }) {
           }}
           source={require("../../assets/icon.png")}
         />
-      )}
+      )} */}
     </View>
   );
 }
