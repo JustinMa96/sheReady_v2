@@ -60,7 +60,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 120,
     height: 40,
-    border: "1px solid #484644",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: "#484644",
     borderRadius: 25,
     marginTop: 10,
     marginHorizontal: 30,
@@ -239,25 +241,25 @@ export default function TaskPopup({ action }) {
         {setpnum === 0 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Jobtitle.svg")}
+            source={require("../../assets/Home/Jobtitle.png")}
           />
         )}
         {setpnum === 1 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/goalsetting.svg")}
+            source={require("../../assets/Home/goalsetting.png")}
           />
         )}
         {setpnum === 2 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/smalltask.svg")}
+            source={require("../../assets/Home/smalltask.png")}
           />
         )}
         {setpnum === 3 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Notification.svg")}
+            source={require("../../assets/Home/Notification.png")}
           />
         )}
       </View>
@@ -361,7 +363,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/svg/task.svg")}
+                source={require("../../assets/common/task.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -428,7 +430,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/svg/date.svg")}
+                source={require("../../assets/common/date.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -606,7 +608,7 @@ export default function TaskPopup({ action }) {
           >
             <Image
               style={{ height: 25, width: 25, resizeMode: "contain" }}
-              source={require("../../assets/svg/repeat.svg")}
+              source={require("../../assets/common/repeat.png")}
             />
             <View style={{ flexDirection: "column", flex: 0.7 }}>
               <View style={styles.notiBox}>
@@ -732,7 +734,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/svg/time.svg")}
+                source={require("../../assets/common/time.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -1031,7 +1033,7 @@ export default function TaskPopup({ action }) {
             height: "40%",
             resizeMode: "contain",
           }}
-          source={require("../../assets//Home/flower.svg")}
+          source={require("../../assets//Home/flower.png")}
         />
       )}
     </View>

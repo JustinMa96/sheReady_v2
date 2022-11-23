@@ -12,10 +12,6 @@ import { useTheme } from "@react-navigation/native";
 
 //react native way of styling
 const styles = StyleSheet.create({
-  btnCont: {
-    display: "flex",
-    width: "100%",
-  },
   btnBox: {
     width: 110,
     height: 70,
@@ -71,7 +67,7 @@ export default function IconBtn_Wins({
       >
         <Image
           style={styles.img}
-          source={require("../../assets/Home/expowins.svg")}
+          source={require("../../assets/Home/expowins.png")}
         />
       </Button>
       <Text
