@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Button_Gate_Img({
-  imgSrc = require("../../assets/SC_Home/mv1.png"),
+  imgSrc = require("../../assets/Home/mv1.png"),
   btnUrl = "Community",
   action,
 }) {

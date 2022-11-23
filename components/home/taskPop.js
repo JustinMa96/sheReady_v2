@@ -273,7 +273,7 @@ export default function TaskPopup({ action }) {
           />
         )}
         {setpnum === 1 && (
-          <Imager
+          <Image
             style={styles.maintitle}
             source={require("../../assets/Home/goalsetting.png")}
           />

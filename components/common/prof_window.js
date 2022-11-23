@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
 export default function Prof_Window({
   // const { colors } = useTheme();
-  imgSrc = require("../../assets/common/dots.png"),
+  imgSrc = require("../../assets/common/add.png"),
   nav,
   // btnUrl = "./Community"
 }) {
