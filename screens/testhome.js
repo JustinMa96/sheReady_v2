@@ -163,10 +163,6 @@ export default function Testhome({ navigation }) {
           <View style={styles.homecont}>
             {/* Hazel */}
             <View style={styles.newscont}>
-              {/* <Image
-                style={styles.news}
-                source={require("../assets/Home/fake news.png")}
-              /> */}
               <Button_Gate_Img action={navigation}></Button_Gate_Img>
             </View>
 
@@ -183,7 +179,7 @@ export default function Testhome({ navigation }) {
                   <ImageBackground
                     resizeMode="cover"
                     style={styles.bgImg}
-                    source={require("../assets/Home/girl.png")}
+                    // source={require("../assets/SC_Home/girl.png")}
                   >
                   </ImageBackground>
                   <View

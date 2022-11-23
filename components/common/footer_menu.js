@@ -84,7 +84,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/Home/community.png")}
+                source={require("../../assets/SC_Home/community.png")}
               />
               <Text
                 style={[styles.text, {

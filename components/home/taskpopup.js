@@ -241,25 +241,25 @@ export default function TaskPopup({ action }) {
         {setpnum === 0 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Jobtitle.png")}
+            source={require("../../assets/SC_Home/Jobtitle.png")}
           />
         )}
         {setpnum === 1 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/goalsetting.png")}
+            source={require("../../assets/SC_Home/goalsetting.png")}
           />
         )}
         {setpnum === 2 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/smalltask.png")}
+            source={require("../../assets/SC_Home/smalltask.png")}
           />
         )}
         {setpnum === 3 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Notification.png")}
+            source={require("../../assets/SC_Home/Notification.png")}
           />
         )}
       </View>
