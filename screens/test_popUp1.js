@@ -4,6 +4,8 @@ import PopUp1 from "../components/goals/popup_1";
 import { BlurView } from "expo-blur";
 
 export default function Test() {
+
+ 
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -12,6 +14,11 @@ export default function Test() {
   const showPop = () => setPopVisible(true);
   const hidePop = () => setPopVisible(false);
 
+  const containerStyle = {
+    width: "100%",
+    height: "100%",
+  };
+  
   return (
     <SafeAreaView>
       <View>
@@ -19,11 +26,12 @@ export default function Test() {
       <Modal
             visible={popVisible}
             onDismiss={hidePop}
+            contentContainerStyle={containerStyle}
           >
           <TouchableOpacity
             onPress={hidePop}
           >
-          <BlurView
+          {/* <BlurView
              intensity= {50}
              tint="dark"
              style={{
@@ -33,17 +41,17 @@ export default function Test() {
                justifyContent: "center",
                alignSelf: "center"
              }}
-          >
-            <PopUp1 action={hidePop} />
-          </BlurView>
+          > */}
+            { popVisible? <PopUp1 action={()=>setPopVisible(false)} /> : null }
+          {/* </BlurView> */}
           </TouchableOpacity>
           </Modal>
 
-          <Modal
+          {/* <Modal
             visible={visible}
             onDismiss={hideModal}
           >
-          </Modal>
+          </Modal> */}
 
       </View>
     </SafeAreaView>

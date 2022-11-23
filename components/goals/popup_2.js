@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Modal, Text, Button } from "react-native-paper";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import { View } from "react-native";
 
 const PopUp2 = ({ hide }) => {
@@ -15,8 +15,8 @@ const PopUp2 = ({ hide }) => {
     height: 400,
     backgroundColor: "#000000",
     opacity: 0.7,
-    borderTopLeftRadius: 150,
-    borderTopRightRadius: 150,
+    borderTopLeftRadius: 180,
+    borderTopRightRadius: 180,
     elevation: 5,
     alignSelf: "center",
   };
@@ -45,9 +45,9 @@ const PopUp2 = ({ hide }) => {
     button: {
       alignSelf: "center",
       borderColor: "#FFFFFF",
-      height: 30,
+      height: 40,
       paddingHorizontal: 10,
-      paddingVertical:0 
+      paddingVertical:0,
     },
 
     containerStyle2: {
@@ -60,7 +60,7 @@ const PopUp2 = ({ hide }) => {
       borderColor: "white",
       borderWidth: 1,
       width: 285,
-      height: 385
+      height: 385,
     }
   });
 
@@ -84,13 +84,13 @@ const PopUp2 = ({ hide }) => {
           <View>
             <View 
               style={{
-                width: "fit-content", 
+                width: "fit-content",
                 alignSelf: "center", 
                 borderBottomColor: "white", 
                 borderBottomWidth: 1, 
                 paddingBottom: 10,
                 marginHorizontal: 30,
-                marginBottom: 20
+                marginBottom: 20,
               }}
             >
               <Text style={styles.title}>You are on Fire</Text>
@@ -109,18 +109,25 @@ const PopUp2 = ({ hide }) => {
           </View>
 
           <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-            <Button mode="outlined" style={styles.button} onPress={hideModal}>
-              <Text style={styles.text}>Share</Text>
+            <Button 
+              mode="outlined" 
+              style={styles.button} 
+              onPress={hideModal} 
+              textColor= "white"
+            >
+              Share
             </Button>
-
+          <TouchableOpacity onPress={hideModal}>
             <Button
               mode="outlined"
               style={styles.button}
               onPress={hideModal}
               onPressOut={hide}
+              textColor= "white"
             >
-              <Text style={[styles.text, {padding: 20}]}>Next</Text>
+              Next
             </Button>
+          </TouchableOpacity>
           </View>
         </View>
       </Modal>

@@ -42,7 +42,8 @@ const PopUp1 = ({ action }) => {
     alignSelf: "center", 
   };
 
-  const containerPop2Style = {   
+  const containerPop2Style = {  
+   
   };
 
   const styles = StyleSheet.create({
@@ -73,7 +74,7 @@ const PopUp1 = ({ action }) => {
       borderColor: "#FFFFFF",
       height: 40,
       paddingHorizontal: 10,
-      paddingVertical:0 
+      paddingVertical:0,
     },
 
     containerStyle2: {
@@ -86,7 +87,7 @@ const PopUp1 = ({ action }) => {
       borderColor: "white",
       borderWidth: 1,
       width: 315,
-      height: 485
+      height: 485,
     },
 
     bottomLine: {
@@ -105,7 +106,7 @@ const PopUp1 = ({ action }) => {
       <Modal
           visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
+          contentContainerStyle={containerStyle}    
         > 
         <View style={styles.containerStyle2} >
           <Text style={styles.title}>Task</Text>        
@@ -124,7 +125,7 @@ const PopUp1 = ({ action }) => {
               <Text style={styles.textL}>your task for</Text>
               <Text style={styles.textL}>today?</Text>
             </View>
-
+  
             <View
               style={{
                 flexDirection: "column",
@@ -156,24 +157,27 @@ const PopUp1 = ({ action }) => {
 
             </View>
           </View>
-
+        <TouchableOpacity onPress={showPop2} onPressOut={hideModal}>
           <Button
             mode="outlined"
             style={styles.button}
             onPressOut={hideModal}
-            onPress={showPop2}
-          >
-            <Text style={{ color: "#F3EAE2", fontSize: 20, padding: 20 }}>Done</Text>
+            textColor="white" 
+            // onPress={showPop2}
+          > Done
           </Button>
+        </TouchableOpacity>
           </View>
-        </Modal> 
+        </Modal>
         <Modal
           visible={pop2Visible}
           onDismiss={hideModal}
           contentContainerStyle={containerPop2Style}
         >
-          <PopUp2 hide={hidePop} />
+          { pop2Visible? <PopUp2 action={()=>setPop2Visible(false)} /> : null }
+
       </Modal> 
+    
     </View>
   );
 };
