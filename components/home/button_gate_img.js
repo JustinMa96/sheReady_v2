@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Button_Gate_Img({
-  imgSrc = require("../../assets/Home/flourish1.png"),
+  imgSrc = require("../../assets/SC_Home/flourish1.png"),
   btnUrl = "Community",
   action,
 }) {
@@ -98,7 +98,7 @@ export default function Button_Gate_Img({
         <MyBgImg
           style={styles.stairsImg}
           resizeMode="contain"
-          source={require("../../assets/Home/stairs.png")}/>
+          source={require("../../assets/SC_Home/stairs.png")}/>
       </View>
     </View>
   );
