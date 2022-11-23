@@ -13,6 +13,10 @@ import Shop from "./screens/shop";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
 import Test from "./screens/test";
+import Testgoal from "./screens/testgoal";
+import Testhome from "./screens/testhome";
+import Testsetting from "./screens/testsetting";
+import Testshop from "./screens/testshop";
 // d
 
 const Stack = createNativeStackNavigator();
@@ -66,6 +70,10 @@ export default function App() {
         />
 
         <Stack.Screen name="Test" component={Test} />
+        <Stack.Screen name="Testgoal" component={Testgoal} />
+        <Stack.Screen name="Testhome" component={Testhome} />
+        <Stack.Screen name="Testsetting" component={Testsetting} />
+        <Stack.Screen name="Testshop" component={Testshop} />
       </Stack.Navigator>
     </NavigationContainer>
   );
