@@ -13,15 +13,15 @@ const styles = StyleSheet.create({
     },
 
     textL: {
-      fontFamily: "Leky", 
-      fontSize: 20, 
+      fontFamily: "Leky",
+      fontSize: 20,
       textAlign: "center"
     },
 
     img: {
       width: "100%",
       height: "30%",
-    }, 
+    },
 
     group: {
       height: 40,
@@ -50,15 +50,15 @@ export default function Test() {
           img={require("../assets/SC_Settings/editprofie.png")}
           onPress={("edit profile")}
         />
-        
+
         <IcnBtn
           title="Notification"
           img={require("../assets/SC_Settings/notification.png")}
           onPress={("edit profile")}
         />
-        
+
         <View style={{ borderBottomColor: "#808080", borderBottomWidth: 1, width: "85%", alignSelf: "center", }}>
-          <SegmentedButtons 
+          <SegmentedButtons
             value={value}
             onValueChange={setValue}
             buttons={[
