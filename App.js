@@ -12,7 +12,7 @@ import Setting from "./screens/setting";
 import Shop from "./screens/shop";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
-import Test from "./screens/test";
+import Test from "./screens/test_setting";
 import Testgoal from "./screens/testgoal";
 import Testhome from "./screens/testhome";
 import Testsetting from "./screens/testsetting";
@@ -46,7 +46,7 @@ export default function App() {
   }
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Testhome">
+      <Stack.Navigator initialRouteName="Test">
         <Stack.Screen
           name="Landing"
           component={Landing}

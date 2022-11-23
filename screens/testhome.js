@@ -16,7 +16,7 @@ import Prof_Window from "../components/common/prof_window.js";
 import Button_Gate_Img from "../components/home/button_gate_img.js";
 import IconBtn_Goals from "../components/home/iconbtn_goals.js";
 import IconBtn_Wins from "../components/home/iconbtn_wins.js";
-import TaskPopup from "../components/home/taskpopup";
+import TaskPopup from "../components/home/taskPop.js"
 import Footer_Menu from "../components/common/footer_menu.js";
 
 const styles = StyleSheet.create({
@@ -192,7 +192,7 @@ export default function Testhome({ navigation }) {
                     <Button onPress={showModal}>
                       <Image
                         style={styles.circle}
-                        source={require("../assets/public/add.png")}
+                        source={require("../assets/Home/add.png")}
                       />
                     </Button>
                   </View>

@@ -66,7 +66,7 @@ export default function IconBtn_Goals({
       >
         <Image
           style={styles.img}
-          source={require("../../assets/SC_Home/Addgoal.png")}
+          source={require("../../assets/Home/btn_addgoal.png")}
         />
       </Button>
       <Text

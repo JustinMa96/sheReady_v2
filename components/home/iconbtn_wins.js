@@ -67,7 +67,7 @@ export default function IconBtn_Wins({
       >
         <Image
           style={styles.img}
-          source={require("../../assets/SC_Home/expowins.png")}
+          source={require("../../assets/Home/btn_exportwins.png")}
         />
       </Button>
       <Text

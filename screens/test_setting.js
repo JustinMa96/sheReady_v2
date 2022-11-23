@@ -36,7 +36,7 @@ export default function Test() {
 
   const [value, setValue] = React.useState('')
 
-  imgSrc = require("../assets/SignUp/logo.png")
+  imgSrc = require("../assets/common/profile1.png")
   return (
     <SafeAreaView>
       <View style={styles.top}>
@@ -47,13 +47,13 @@ export default function Test() {
       <View style={{}}>
         <IcnBtn
           title="Edit Profile"
-          img={require("../assets/SignUp/logo.png")}
+          img={require("../assets/SC_Settings/editprofie.png")}
           onPress={("edit profile")}
         />
         
         <IcnBtn
           title="Notification"
-          img={require("../assets/SignUp/logo.png")}
+          img={require("../assets/SC_Settings/notification.png")}
           onPress={("edit profile")}
         />
         
@@ -77,7 +77,7 @@ export default function Test() {
 
          <IcnBtn
           title="Log Out"
-          img={require("../assets/SignUp/logo.png")}
+          img={require("../assets/SC_SignUp/logo.png")}
           onPress={("edit profile")}
         />
       </View>
