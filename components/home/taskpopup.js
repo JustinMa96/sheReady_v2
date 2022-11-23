@@ -241,25 +241,25 @@ export default function TaskPopup({ action }) {
         {setpnum === 0 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/SC_Home/Jobtitle.png")}
+            source={require("../../assets/common/create_goals/0_jobtitle.png")}
           />
         )}
         {setpnum === 1 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/SC_Home/goalsetting.png")}
+            source={require("../../assets/common/create_goals/1_goalssetting.png")}
           />
         )}
         {setpnum === 2 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/SC_Home/smalltask.png")}
+            source={require("../../assets/common/create_goals/2_smalltasks.png")}
           />
         )}
         {setpnum === 3 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/SC_Home/Notification.png")}
+            source={require("../../assets/SC_Settings/notification.png")}
           />
         )}
       </View>
@@ -363,7 +363,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/common/task.png")}
+                source={require("../../assets/common/create_goals/icon_task.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -430,7 +430,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/common/date.png")}
+                source={require("../../assets/common/create_goals/icon_date.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -608,7 +608,7 @@ export default function TaskPopup({ action }) {
           >
             <Image
               style={{ height: 25, width: 25, resizeMode: "contain" }}
-              source={require("../../assets/common/repeat.png")}
+              source={require("../../assets/common/create_goals/icon_repeat.png")}
             />
             <View style={{ flexDirection: "column", flex: 0.7 }}>
               <View style={styles.notiBox}>
@@ -734,7 +734,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/common/time.png")}
+                // source={require("../../assets/common/time.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -1033,7 +1033,7 @@ export default function TaskPopup({ action }) {
             height: "40%",
             resizeMode: "contain",
           }}
-          source={require("../../assets//Home/flower.png")}
+          // source={require("../../assets/SC_Home/flower.png")}
         />
       )}
     </View>

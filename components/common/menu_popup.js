@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
 
 export default function Menu_Popup({
   // onPressAction = {},
-  imgSrc = require("../../assets/public/profile.png"),
+  imgSrc = require("../../assets/common/profile1.png"),
   close,
   small,
   action,
@@ -184,7 +184,7 @@ export default function Menu_Popup({
         <TouchableOpacity style={styles.doorhandleCont}>
           <Image
             style={styles.doorhandle}
-            source={require("../../assets/public/doorhandle.png")}
+            source={require("../../assets/common/doorhandle.png")}
             resizeMode="contain"
           />
         </TouchableOpacity>
