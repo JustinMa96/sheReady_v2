@@ -46,7 +46,7 @@ export default function App() {
   }
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Landing">
+      <Stack.Navigator initialRouteName="Testhome">
         <Stack.Screen
           name="Landing"
           component={Landing}

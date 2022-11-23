@@ -21,7 +21,7 @@ const MyBgImg = styled.ImageBackground`
   background-size: contain;
   align-self: "flex-start";
   width: "100%";
-  height: "30%";
+  height: 200;
 `;
 
 const styles = StyleSheet.create({
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
-    height: "100%",
   },
   quote_ttl: {
     fontFamily: "Comfortaa",
@@ -70,7 +69,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Button_Gate_Img({
-  imgSrc = require("../../assets/public/flourish1.png"),
+  imgSrc = require("../../assets/Home/flourish1.png"),
   btnUrl = "Community",
   action,
 }) {

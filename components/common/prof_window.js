@@ -3,7 +3,7 @@ import { TouchableOpacity, Image, StyleSheet, Text, View } from "react-native";
 import { Modal, IconButton } from "react-native-paper";
 import { useTheme } from "@react-navigation/native";
 import styled from "styled-components/native";
-import MenuPopup from "./Menupop";
+import Menu_Popup from "./menu_popup";
 
 // testing
 const MyWrapCont = styled.View`
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
 export default function Prof_Window({
   // const { colors } = useTheme();
-  imgSrc = require("../../assets/svg/dots.svg"),
+  imgSrc = require("../../assets/common/dots.png"),
   nav,
   // btnUrl = "./Community"
 }) {
@@ -74,7 +74,7 @@ export default function Prof_Window({
         onDismiss={hideModal}
         contentContainerStyle={containerStyle}
       >
-        <MenuPopup close={hideModal} small={onClose} action={nav} />
+        <Menu_Popup close={hideModal} small={onClose} action={nav} />
       </Modal>
     </View>
   );

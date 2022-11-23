@@ -84,7 +84,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/Home/community.svg")}
+                source={require("../../assets/Home/community.png")}
               />
               <Text
                 style={[styles.text, {
@@ -103,7 +103,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/svg/goals.svg")}
+                source={require("../../assets/common/goals.png")}
               />
               <Text
                 style={[styles.text, {
@@ -123,7 +123,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text_home,
                 }]}
-                source={require("../../assets/svg/home.svg")}
+                source={require("../../assets/common/home.png")}
               />
               <Text
                 style={[styles.text, {
@@ -142,7 +142,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/svg/wins.svg")}
+                source={require("../../assets/common/wins.png")}
               />
               <Text
                 style={[styles.text, {
@@ -161,7 +161,7 @@ export default function Footer_Menu({
                 style={[styles.icon, {
                   color: colors.text,
                 }]}
-                source={require("../../assets/svg/setting.svg")}
+                source={require("../../assets/common/setting.png")}
               />
               <Text
                 style={[styles.text, {

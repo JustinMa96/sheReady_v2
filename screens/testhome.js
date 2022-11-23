@@ -1,23 +1,23 @@
+("react-native");
 import { Wrapper } from "../styles/globals.js";
 import * as React from "react";
 import {
   View,
-  TouchableOpacity,
   Image,
   StyleSheet,
   Text,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from "react-native";
 import { Button, IconButton, Checkbox } from "react-native-paper";
-("react-native");
 import { Modal, Portal, Provider } from "react-native-paper";
 import { useTheme } from "@react-navigation/native";
-import TaskPopup from "../components/home/taskpopup";
-import IconBtn_Wins from "../components/home/iconbtn_wins.js";
-import IconBtn_Goals from "../components/home/iconbtn_goals.js";
 import Prof_Window from "../components/common/prof_window.js";
-import Footer_Menu from "../components/common/footer_menu.js";
 import Button_Gate_Img from "../components/home/button_gate_img.js";
+import IconBtn_Goals from "../components/home/iconbtn_goals.js";
+import IconBtn_Wins from "../components/home/iconbtn_wins.js";
+import TaskPopup from "../components/home/taskpopup";
+import Footer_Menu from "../components/common/footer_menu.js";
 
 const styles = StyleSheet.create({
   homecont: {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     flexDirection: "column",
+    justifyContent: "flex-start",
   },
 
   text: {
@@ -37,9 +38,9 @@ const styles = StyleSheet.create({
   },
 
   newscont: {
-    // height: "30%",
+    height: "30%",
     width: "100%",
-    top: 30,
+    // top: 30,
     marginBottom: 35,
   },
 
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cardcont: {
-  // inset rgb(0 0 0 / 20%) 0px 5px 3px
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: -4 },
     borderTopLeftRadius: 40,
@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
 
   bgImg: {
     zIndex: 1,
-    position: "absolute",
-    top: 0,
-    left: 0,
+    // position: "absolute",
+    // top: 0,
+    // left: 0,
     flex: 1
   },
 
@@ -183,19 +183,9 @@ export default function Testhome({ navigation }) {
                   <ImageBackground
                     resizeMode="cover"
                     style={styles.bgImg}
-                    source={require("../assets/Home/girl.svg")}
+                    source={require("../assets/Home/girl.png")}
                   >
                   </ImageBackground>
-                  {/* <Image
-                    style={{
-                      height: "100%",
-                      width: "30%",
-                      zIndex: 1,
-                      position: "absolute",
-                      left: 0,
-                    }}
-                    source={require("../assets/Home/girl.svg")}
-                  /> */}
                   <View
                     style={{ alignContent: "center", padding: "20%", zIndex: 2 }}
                   >
@@ -289,7 +279,6 @@ export default function Testhome({ navigation }) {
                 onPress={hideModal}
                 icon="close-outline"
                 iconColor={colors.text}
-                style={{ position: "absolute", right: 0, top: "20%" }}
               ></IconButton>
               <TaskPopup action={changeCard} />
             </Modal>
