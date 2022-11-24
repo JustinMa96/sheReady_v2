@@ -269,25 +269,25 @@ export default function TaskPopup({ action }) {
         {setpnum === 0 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Jobtitle.png")}
+            source={require("../../assets/common/create_goals/0_jobtitle.png")}
           />
         )}
         {setpnum === 1 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/goalsetting.png")}
+            source={require("../../assets/common/create_goals/1_goalssetting.png")}
           />
         )}
         {setpnum === 2 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/smalltask.png")}
+            source={require("../../assets/common/create_goals/2_smalltasks.png")}
           />
         )}
         {setpnum === 3 && (
           <Image
             style={styles.maintitle}
-            source={require("../../assets/Home/Notification.png")}
+            source={require("../../assets/common/create_goals/3_notificationsetting.png")}
           />
         )}
       </View>
@@ -411,7 +411,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/Home/task.png")}
+                source={require("../../assets/common/create_goals/icon_task.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -478,7 +478,7 @@ export default function TaskPopup({ action }) {
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/Home/date.png")}
+                source={require("../../assets/common/create_goals/icon_date.png")}
               />
             </View>
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -656,7 +656,7 @@ export default function TaskPopup({ action }) {
           >
             <Image
               style={{ height: 25, width: 25, resizeMode: "contain" }}
-              source={require("../../assets/Home/repeat.png")}
+              source={require("../../assets/common/create_goals/icon_repeat.png")}
             />
             <View style={{ flexDirection: "column", flex: 0.7 }}>
               <View style={styles.notiBox}>
