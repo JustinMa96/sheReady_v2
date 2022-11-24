@@ -79,7 +79,7 @@ const PopUp2 = ({ hide }) => {
               position: "relative",
               alignSelf: "center",
             }}
-            source={require("../../assets/SignUp/logo.png")}
+            source={require("../../assets/SC_SignUp/logo.png")}
           />
           <View>
             <View 

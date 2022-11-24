@@ -91,7 +91,7 @@ export default function Test() {
 
          <IcnBtn
           title="Log Out"
-          img={require("../assets/SC_SignUp/logo.png")}
+          img={require("../assets/SC_Settings/signout.png")}
           onPress={("edit profile")}
         />
         <Modal
