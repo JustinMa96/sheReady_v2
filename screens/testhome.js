@@ -21,7 +21,7 @@ import Footer_Menu from "../components/common/footer_menu.js";
 
 const styles = StyleSheet.create({
   homecont: {
-    height: "100vh",
+    height: "100%",
     flex: 1,
     alignItems: "center",
     flexDirection: "column",
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   newscont: {
     height: "30%",
     width: "100%",
-    // top: 30,
     marginBottom: 35,
   },
 
@@ -65,16 +64,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     borderBottomLeftRadius: 40,
-    // height: "35%",
     width: "90%",
     alignItems: "center",
   },
 
   bgImg: {
     zIndex: 1,
-    // position: "absolute",
-    // top: 0,
-    // left: 0,
     flex: 1
   },
 
@@ -179,13 +174,13 @@ export default function Testhome({ navigation }) {
                   <ImageBackground
                     resizeMode="cover"
                     style={styles.bgImg}
-                    // source={require("../assets/SC_Home/girl.png")}
+                    source={require("../assets/common/dots.png")}
                   >
                   </ImageBackground>
                   <View
                     style={{ alignContent: "center", padding: "20%", zIndex: 2 }}
                   >
-                    <Text style={{ textAlign: "center", padding: "0" }}>
+                    <Text style={{ textAlign: "center", padding: 0 }}>
                       No task yet.
                     </Text>
                     <Text>Tap the “+” below to get started.</Text>

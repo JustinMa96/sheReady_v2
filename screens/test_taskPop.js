@@ -21,7 +21,7 @@ export default function Test() {
   };
 
   console.log("TEST");
-  
+
   return (
     <SafeAreaView>
       <View>
@@ -39,7 +39,7 @@ export default function Test() {
         onDismiss={hideModal}
         contentContainerStyle={containerStyle}
       >
-        <Button 
+        <Button
           title="Button"
           onPress={hideModal}
         />

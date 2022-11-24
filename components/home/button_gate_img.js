@@ -20,9 +20,10 @@ const MyBgImg = styled.ImageBackground`
   background-position: bottom;
   background-size: contain;
   align-self: "flex-start";
-  width: "100%";
+  width: 100%;
   height: 200;
 `;
+// error happened with ↑width:"100%";
 
 const styles = StyleSheet.create({
   wrap1: {

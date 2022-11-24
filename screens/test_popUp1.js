@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 
 export default function Test() {
 
- 
+
   const [visible, setVisible] = React.useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
@@ -18,7 +18,7 @@ export default function Test() {
     width: "100%",
     height: "100%",
   };
-  
+
   return (
     <SafeAreaView>
       <View>
