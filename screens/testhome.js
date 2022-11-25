@@ -20,44 +20,51 @@ import TaskPopup from "../components/home/taskPop.js"
 import Footer_Menu from "../components/common/footer_menu.js";
 
 const styles = StyleSheet.create({
-  homecont: {
+  sarearea: {
     height: "100%",
-    flex: 1,
+    display: "flex",
+    flexDirection: "row",
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "flex-start",
   },
 
-  text: {
-    color: "#572516",
-    padding: 2,
-    fontSize: "80%",
-    textAlign: "center",
-    fontFamily: "Comfortaa",
-    fontWeight: "bold",
+  homecont: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "flex-start",
   },
 
   newscont: {
-    height: "30%",
     width: "100%",
     marginBottom: 35,
+    display: "flex",
   },
 
-  news: {
-    resizeMode: "contain",
+  taskcont: {
+    alignItems: "center",
     width: "100%",
-    height: "100%",
+    marginBottom: 35,
+    height: 280,
+    display: "flex",
   },
 
-  day: {
+  text: {
     color: "#572516",
+    padding: 2,
     fontSize: 20,
     textAlign: "center",
     fontFamily: "Comfortaa",
     fontWeight: "bold",
-    marginTop: 20,
     marginBottom: 10,
   },
+
+  date: {
+  },
+
   cardcont: {
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: -4 },
@@ -66,11 +73,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 40,
     width: "90%",
     alignItems: "center",
+    display: "flex",
+    padding: 10,
   },
 
   bgImg: {
     zIndex: 1,
-    flex: 1
   },
 
   date: {
@@ -99,6 +107,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     fontSize: 18,
   },
+
+  iconBtnBox: {
+    flexDirection: "row",
+    width: "90%",
+    justifyContent: "space-between",
+    marginTop: 20,
+  }
 });
 
 var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -151,7 +166,8 @@ export default function Testhome({ navigation }) {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+     style={styles.sarearea}>
       <Provider>
         <Portal>
           <Prof_Window nav={navigation}/>
@@ -161,100 +177,100 @@ export default function Testhome({ navigation }) {
               <Button_Gate_Img action={navigation}></Button_Gate_Img>
             </View>
 
-            <Text style={styles.day}>Task of The Day</Text>
+            <View style={styles.taskcont}>
+              <Text style={styles.text}>Task of The Day</Text>
 
-            <View
-              style={[styles.cardcont, {
-                backgroundColor: colors.card,
-              }]}
-              >
-              <Text style={styles.date}>{date}</Text>
-              {firstUse === true && (
-                <View>
-                  <ImageBackground
-                    resizeMode="cover"
-                    style={styles.bgImg}
-                    source={require("../assets/common/dots.png")}
-                  >
-                  </ImageBackground>
-                  <View
-                    style={{ alignContent: "center", padding: "20%", zIndex: 2 }}
-                  >
-                    <Text style={{ textAlign: "center", padding: 0 }}>
-                      No task yet.
-                    </Text>
-                    <Text>Tap the “+” below to get started.</Text>
-                    <Button onPress={showModal}>
-                      <Image
-                        style={styles.circle}
-                        source={require("../assets/SC_Home/add.png")}
+              <View
+                style={[styles.cardcont, {
+                  backgroundColor: colors.card,
+                }]}
+                >
+                  <Text style={styles.date}>{date}</Text>
+                  {firstUse === true && (
+                  <View>
+                    <ImageBackground
+                      resizeMode="cover"
+                      style={styles.bgImg}
+                      source={require("../assets/common/dots.png")}
+                    >
+                    </ImageBackground>
+                    <View
+                      style={{ alignContent: "center", padding: "20%", zIndex: 2 }}
+                    >
+                      <Text style={{ textAlign: "center", padding: 0 }}>
+                        No task yet.
+                      </Text>
+                      <Text>Tap the “+” below to get started.</Text>
+                      <Button onPress={showModal}>
+                        <Image
+                          style={styles.circle}
+                          source={require("../assets/SC_Home/add.png")}
+                        />
+                      </Button>
+                    </View>
+                  </View>
+                )}
+                {firstUse === false && (
+                  <View style={{ paddingTop: 20 }}>
+                    <View style={styles.selectline}>
+                      <IconButton
+                        icon="circle-small"
+                        iconColor="#572516"
+                        size={20}
                       />
-                    </Button>
+                      <Text style={styles.selecttxt}>
+                        Invite the mentor to participate in usability test
+                      </Text>
+                      <Checkbox
+                        color="white"
+                        status={checked ? "checked" : "unchecked"}
+                        onPress={() => {
+                          setChecked(!checked);
+                        }}
+                      />
+                    </View>
+                    <View style={styles.selectline}>
+                      <IconButton
+                        icon="circle-small"
+                        iconColor="#572516"
+                        size={20}
+                      />
+                      <Text style={styles.selecttxt}>
+                        Take up the facilitator role at team's workshops{" "}
+                      </Text>
+                      <Checkbox
+                        color="white"
+                        status={checked ? "checked" : "unchecked"}
+                        onPress={() => {
+                          setChecked(!checked);
+                        }}
+                      />
+                    </View>
+                    <View style={styles.selectline}>
+                      <IconButton
+                        icon="circle-small"
+                        iconColor="#572516"
+                        size={20}
+                      />
+                      <Text style={styles.selecttxt}>
+                        Get the mentor's advice on how to explain design ideas{" "}
+                      </Text>
+                      <Checkbox
+                        color="white"
+                        status={checked ? "checked" : "unchecked"}
+                        onPress={() => {
+                          setChecked(!checked);
+                        }}
+                      />
+                    </View>
                   </View>
-                </View>
-              )}
-              {firstUse === false && (
-                <View style={{ paddingTop: 20 }}>
-                  <View style={styles.selectline}>
-                    <IconButton
-                      icon="circle-small"
-                      iconColor="#572516"
-                      size={20}
-                    />
-                    <Text style={styles.selecttxt}>
-                      Invite the mentor to participate in usability test
-                    </Text>
-                    <Checkbox
-                      color="white"
-                      status={checked ? "checked" : "unchecked"}
-                      onPress={() => {
-                        setChecked(!checked);
-                      }}
-                    />
-                  </View>
-                  <View style={styles.selectline}>
-                    <IconButton
-                      icon="circle-small"
-                      iconColor="#572516"
-                      size={20}
-                    />
-                    <Text style={styles.selecttxt}>
-                      Take up the facilitator role at team's workshops{" "}
-                    </Text>
-                    <Checkbox
-                      color="white"
-                      status={checked ? "checked" : "unchecked"}
-                      onPress={() => {
-                        setChecked(!checked);
-                      }}
-                    />
-                  </View>
-                  <View style={styles.selectline}>
-                    <IconButton
-                      icon="circle-small"
-                      iconColor="#572516"
-                      size={20}
-                    />
-                    <Text style={styles.selecttxt}>
-                      Get the mentor's advice on how to explain design ideas{" "}
-                    </Text>
-                    <Checkbox
-                      color="white"
-                      status={checked ? "checked" : "unchecked"}
-                      onPress={() => {
-                        setChecked(!checked);
-                      }}
-                    />
-                  </View>
-                </View>
-              )}
+                )}
+              </View>
             </View>
 
-            <View style={{
-                flexDirection: "row",
-                width: "90%",
-                justifyContent: "space-between"
-              }}>
+
+
+            <View style={styles.iconBtnBox}>
               <IconBtn_Goals action={navigation} />
               <IconBtn_Wins action={navigation} />
             </View>
