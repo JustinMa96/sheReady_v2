@@ -50,13 +50,13 @@ export default function Test() {
     setShowSetting(false);
   };
 
-  imgSrc = require("../assets/common/profile1.png")
+  const userImg = require("../assets/common/profile1.png")
   return (
     <SafeAreaView>
 
       <View style={styles.top}>
         <Text style={styles.textL}>Setting</Text>
-        <Image style={styles.img} source={imgSrc} resizeMode="contain" />
+        <Image style={styles.img} source={userImg} resizeMode="contain" />
         <Text style={[styles.textL, {fontSize:16}]}>username</Text>
       </View>
       <View style={{}}>
@@ -91,7 +91,7 @@ export default function Test() {
 
          <IcnBtn
           title="Log Out"
-          img={require("../assets/SC_SignUp/logo.png")}
+          img={require("../assets/SC_Settings/signout.png")}
           onPress={("edit profile")}
         />
         <Modal
@@ -99,7 +99,7 @@ export default function Test() {
           onDismiss={hideModal}
           contentContainerStyle={containerStyle}
         >
-            {showSetting? <SettingPop />: null}
+            {showSetting? <SettingPop action={hideModal} source={userImg} />: null}
         </Modal> 
       </View>
     </SafeAreaView>
