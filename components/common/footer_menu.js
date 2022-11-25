@@ -5,34 +5,43 @@ import {
   Image,
   StyleSheet,
   Text,
-  ImageBackground
+  ImageBackground,
+  Pressable
 } from "react-native";
+import styled from "styled-components/native";
 import { Button, IconButton, Checkbox } from "react-native-paper";
 ("react-native");
 import { Modal, Portal, Provider } from "react-native-paper";
 import { useTheme } from "@react-navigation/native";
+
+// const MyBgImg = styled.Image`
+//   background-size: 10%;
+//   font-size: 10px,
+// `;
 
 const styles = StyleSheet.create({
   grid: {
     backgroundColor: "#7A7571",
     flex: 1,
     flexDirection: "row",
+    justifyContent: "space-around",
     width: "100%",
-    height: 63,
+    height: 80,
     position: "absolute",
     bottom: 0,
     overflow: "visible",
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 
   btn: {
-    padding: 5,
-    width: "20%",
+    display: "flex",
     justifyContent: "center",
+    alignItems: "center",
   },
 
   btn_home: {
     backgroundColor: "#7A7571",
-    overflow: "visible",
     borderRadius: "50%",
     width: 70,
     height: 70,
@@ -40,14 +49,28 @@ const styles = StyleSheet.create({
     marginTop: -25,
   },
 
+  innerBtnBox: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   icon: {
-    padding: 16,
-    resizeMode: "contain",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "10%",
+    height: "auto",
+    padding: 14,
+    overflow: "visible",
   },
 
   text: {
     padding: 2,
-    fontSize: "80%",
+    fontSize: 14,
+    display: "flex",
+    width: "100%",
     textAlign: "center",
     fontFamily: "Comfortaa",
     fontWeight: "bold",
@@ -75,11 +98,11 @@ export default function Footer_Menu({
       <Portal>
         <View
           style={styles.grid}>
-          <Button
+          <Pressable
             onPress={() => action.navigate("Community")}
             style={styles.btn}
           >
-            <View>
+            <View style={styles.innerBtnBox}>
               <Image
                 style={[styles.icon, {
                   color: colors.text,
@@ -92,13 +115,13 @@ export default function Footer_Menu({
                 }]}
                 >Comm</Text>
             </View>
-          </Button>
+          </Pressable>
 
-          <Button
+          <Pressable
             onPress={() => action.navigate("Goals")}
             style={styles.btn}
           >
-            <View>
+            <View style={styles.innerBtnBox}>
               <Image
                 style={[styles.icon, {
                   color: colors.text,
@@ -111,14 +134,14 @@ export default function Footer_Menu({
                 }]}
                 >Goals</Text>
             </View>
-          </Button>
+          </Pressable>
 
-          <Button
+          <Pressable
             mode="text"
             onPress={() => action.navigate("Home")}
             style={[styles.btn, styles.btn_home]}
           >
-            <View>
+            <View style={styles.innerBtnBox}>
               <Image
                 style={[styles.icon, {
                   color: colors.text_home,
@@ -131,13 +154,13 @@ export default function Footer_Menu({
                 }]}
                 >Home</Text>
             </View>
-          </Button>
+          </Pressable>
 
-          <Button
+          <Pressable
             onPress={() => action.navigate("Wins")}
             style={styles.btn}
           >
-            <View>
+            <View style={styles.innerBtnBox}>
               <Image
                 style={[styles.icon, {
                   color: colors.text,
@@ -150,13 +173,13 @@ export default function Footer_Menu({
                 }]}
                 >Wins</Text>
             </View>
-          </Button>
+          </Pressable>
 
-          <Button
+          <Pressable
             onPress={() => action.navigate("Setting")}
             style={styles.btn}
           >
-            <View>
+            <View style={styles.innerBtnBox}>
               <Image
                 style={[styles.icon, {
                   color: colors.text,
@@ -169,7 +192,7 @@ export default function Footer_Menu({
                 }]}
                 >Setting</Text>
             </View>
-          </Button>
+          </Pressable>
         </View>
       </Portal>
     </Provider>
