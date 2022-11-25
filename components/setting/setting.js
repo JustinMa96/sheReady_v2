@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 
 
-export default function SettingPop() {
+export default function SettingPop({action}, props) {
 
   const [username, onChangeUsername] = React.useState("");
   const [email, onChangeEmail] = React.useState("");
@@ -71,7 +71,7 @@ export default function SettingPop() {
     <SafeAreaView>
 
       <View style={styles.view}>
-        <Image style={styles.img} source={imgSrc} resizeMode="contain" />
+        <Image style={styles.img} source={props.source} resizeMode="contain" />
         <Text style={[styles.textL, {fontSize:16}]}>username</Text>
         <KeyboardAwareScrollView>
           <View style={{width: "85%", alignSelf:"center"}}>
@@ -105,7 +105,7 @@ export default function SettingPop() {
             />
           </View>
 
-        <Button mode="outlined" style={styles.btn} labelStyle={styles.btnTxt}>Save</Button>
+        <Button mode="outlined" style={styles.btn} labelStyle={styles.btnTxt} onPress={action}>Save</Button>
       </KeyboardAwareScrollView>
       </View>
 
@@ -114,7 +114,6 @@ export default function SettingPop() {
 };
 
 // problem
-// 1. button doesn't close modal 
 // 2. image is not design to become changeable
 // 3. popup background is grey (maybe fix it from setting page)
 // 4. database!!!!! 
