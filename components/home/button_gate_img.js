@@ -32,15 +32,17 @@ const styles = StyleSheet.create({
     position: "relative",
     width: "100%",
     height: 256,
-    paddingLeft: "10%",
-    paddingRight: "10%",
+    paddingLeft: "5%",
+    paddingRight: "5%",
     alignItems: "center",
     justifyContent: "space-between",
+    paddingTop: 20,
   },
   imgCont: {
     overflow: "hidden",
     height: 256,
-    width: 201,
+    // width: 201,
+    flexGrow: 1,
     borderRadius: 150,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
@@ -53,19 +55,34 @@ const styles = StyleSheet.create({
   },
   quote_box: {
     display: "flex",
+    height: 256,
+    width: 200,
     flexDirection: "column",
-    justifyContent: "flex-end",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    paddingTop: 60,
+    paddingLeft: 10,
   },
   quote_ttl: {
     fontFamily: "Comfortaa",
     fontWeight: 400,
-    height: "10%",
+    height: 20,
+    fontSize: 14,
+    flexWrap: "wrap",
   },
   quote_txt: {
     marginTop: 5,
     fontFamily: "Leky",
     fontWeight: 400,
-    height: "20%",
+    height: 100,
+    fontSize: 14,
+    width: 170,
+    flexWrap: "wrap",
+  },
+  stairsImg: {
+    width: 200,
+    height: 70,
+    marginLeft: -20,
   },
 });
 
@@ -94,7 +111,7 @@ export default function Button_Gate_Img({
           QUOTE OF THE DAY
         </Text>
         <Text style={styles.quote_txt}>
-          Everything You Touch Flourishes
+          Everything   You Touch   Flourishes
         </Text>
         <MyBgImg
           style={styles.stairsImg}
