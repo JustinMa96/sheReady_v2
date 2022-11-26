@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   exampleCont: {
     backgroundColor: "#ECD8D0",
     borderRadius: 15,
-    width: "fit-content",
+    width: "100%",
     marginVertical: 5,
     marginRight: 10,
 
