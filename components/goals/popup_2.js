@@ -20,7 +20,7 @@ const PopUp2 = ({ hide }) => {
     elevation: 5,
     alignSelf: "center",
   };
-  
+
   const styles = StyleSheet.create({
     title: {
       color: "#F3EAE2",
@@ -55,7 +55,7 @@ const PopUp2 = ({ hide }) => {
       borderTopRightRadius: 150,
       backgroundColor: "#000000",
       elevation: 5,
-      alignSelf: "center", 
+      alignSelf: "center",
       justifyContent: "center",
       borderColor: "white",
       borderWidth: 1,
@@ -82,12 +82,12 @@ const PopUp2 = ({ hide }) => {
             source={require("../../assets/SC_SignUp/logo.png")}
           />
           <View>
-            <View 
+            <View
               style={{
-                width: "fit-content",
-                alignSelf: "center", 
-                borderBottomColor: "white", 
-                borderBottomWidth: 1, 
+                width: "100%",
+                alignSelf: "center",
+                borderBottomColor: "white",
+                borderBottomWidth: 1,
                 paddingBottom: 10,
                 marginHorizontal: 30,
                 marginBottom: 20,
@@ -98,7 +98,7 @@ const PopUp2 = ({ hide }) => {
               You have been successfully done the task!
               </Text>
             </View>
-            
+
 
             <Text style={styles.text}>
               Accomplishment
@@ -109,10 +109,10 @@ const PopUp2 = ({ hide }) => {
           </View>
 
           <View style={{ flexDirection: "row", justifyContent: "space-around", marginTop: 10 }}>
-            <Button 
-              mode="outlined" 
-              style={styles.button} 
-              onPress={hideModal} 
+            <Button
+              mode="outlined"
+              style={styles.button}
+              onPress={hideModal}
               textColor= "white"
             >
               Share

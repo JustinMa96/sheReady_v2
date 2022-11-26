@@ -9,14 +9,28 @@ import {
   TextInput,
   Switch,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { Button, IconButton } from "react-native-paper";
 ("react-native");
 import { useTheme } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
+// import { ScrollView } from "react-native-web";
 
 const styles = StyleSheet.create({
+  popupCont: {
+    width: "100%",
+    opacity: 1,
+    shadowOpacity: 0.1,
+    borderTopLeftRadius: 200,
+    borderTopRightRadius: 200,
+    height: "80%",
+    alignItems: "center",
+    position: "absolute",
+    bottom: 0,
+  },
+
   popuptitle: {
     color: "#484644",
     padding: 10,
@@ -28,7 +42,7 @@ const styles = StyleSheet.create({
   },
 
   maintitlecont: {
-    height: "20%",
+    height: 120,
     width: "40%",
   },
 
@@ -133,22 +147,22 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    paddingTop: "1em",
   },
 
   pickerCont: {
     flexDirection: "column",
     justifyContent: "center",
     marginTop: 20,
-    padding: 10
+    padding: 10,
   },
 
   picker: {
     color: "#484644",
     fontFamily: "Comfortaa",
-    marginTop: "1em",
+    // marginTop: "1em",
     border: "none",
     justifyContent: "space-between",
+
   },
 
   step1_picker: {
@@ -163,11 +177,43 @@ const styles = StyleSheet.create({
     color: "#484644",
     fontFamily: "Comfortaa",
     fontSize: 16,
+    justifyContent: "flex-start",
+    // height: 50,
+  },
+
+  step1_picker_enterGoal: {
+    marginTop: -30,
+  },
+
+  existing_cont: {
+    display: "flex",
+    justifyContent: "flex-start",
+    height: 100,
+  },
+
+  existing_item_box: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    height: 200,
+    padding: 0,
+    // marginTop: -70,
+    // overflow: "hidden",
   },
 
   step1_pickerItem: {
     color: "#484644",
     fontFamily: "Comfortaa",
+    justifyContent: "flex-start",
+  },
+
+  step1_pickerItem_item1: {
+    // marginTop: -100,
+    // display: "flex",
+  },
+
+  deadline_cont: {
+    display: "flex",
   },
 
   step2_deadln_pickerItem: {
@@ -189,10 +235,22 @@ const styles = StyleSheet.create({
   exampleCont: {
     backgroundColor: "#ECD8D0",
     borderRadius: 15,
-    width: "fit-content",
+    width: "100%",
     marginVertical: 5,
     marginRight: 10,
+  },
 
+  scrollViewBox: {
+    display: "flex",
+    overflow: "scroll"
+  },
+
+  scrollView: {
+    backgroundColor: "pink",
+    // height: "100%",
+    // width: "100%",
+    // marginVertical: 100,
+    display: "flex",
   },
 
 });
@@ -248,21 +306,12 @@ export default function TaskPopup({ action }) {
 
   return (
     <View
-      style={{
-        width: "100%",
-        opacity: 1,
-        shadowOpacity: 0.1,
-        shadowOffset: { width: 0, height: -4 },
-        borderTopLeftRadius: 200,
-        borderTopRightRadius: 200,
-        backgroundColor: colors.background,
-        height: "80%",
-        alignItems: "center",
-        position: "absolute",
-        bottom: 0,
-
-      }}
-    >
+      style={[styles.popupCont,
+        {
+          shadowOffset: { width: 0, height: -4 },
+          backgroundColor: colors.background,
+        }]}
+      >
       <Text style={styles.popuptitle}>Create Goals</Text>
 
       <View style={styles.maintitlecont}>
@@ -293,7 +342,8 @@ export default function TaskPopup({ action }) {
       </View>
 
       <View style={styles.contentcont}>
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.scrollViewBox}>
+        {/* <ScrollView style={styles.scrollView}> */}
         {setpnum === 0 && (
           <View>
             <Text
@@ -345,8 +395,10 @@ export default function TaskPopup({ action }) {
 
         {setpnum === 1 && (
           <View style={styles.pickerCont}>
-            <View style={styles.step1_picker}>
-            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5}]}>Create New Goal</Text>
+            <View style={[
+                styles.step1_picker,
+                styles.step1_picker_enterGoal,
+              ]}>
               <TextInput
                 style={{fontSize: 16}}
                 placeholder="Enter your goal"
@@ -356,47 +408,60 @@ export default function TaskPopup({ action }) {
               />
             </View>
 
-              <View style={{flexDirection: "row", flexWrap: "wrap" }}>
+            <View style={[
+                styles.scrollable,
+                {flexDirection: "row", flexWrap: "wrap" }
+              ]}>
               <View style={styles.exampleCont}>
-                <Text style={styles.example}>Readership Skills;</Text>
+                <Text style={styles.example}>Leadership Skills;</Text>
               </View>
               <View style={styles.exampleCont}>
-              <Text style={styles.example}>Communication Skills;</Text>
+                <Text style={styles.example}>Communication Skills;</Text>
               </View>
               <View style={styles.exampleCont}>
-              <Text style={styles.example}>Time Management Skills;</Text>
+                <Text style={styles.example}>Time Management Skills;</Text>
               </View>
             </View>
 
-            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5, marginTop: 10}]}>Pick Existing Goal</Text>
-            <Picker
-              style={styles.step1_picker}
-              selectedValue={selectedCategory}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedCategory(itemValue)
-              }
-            >
-              <Picker.Item
-                style={styles.step1_pickerItem}
-                label="Readership skills"
-                value="Redear"
-              />
-              <Picker.Item
-                style={styles.step1_pickerItem}
-                label="Communication skills"
-                value="Communication"
-              />
-              <Picker.Item
-                style={styles.step1_pickerItem}
-                label="Time management skills"
-                value="Time"
-              />
-              <Picker.Item
-                style={styles.step1_pickerItem}
-                label="Add more.."
-                value="Add"
-              />
-            </Picker>
+            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5, marginTop: 20}]}>Pick Existing Goal</Text>
+            <View style={[
+                styles.existing_cont
+              ]}>
+              <Picker
+                style={[
+                  styles.step1_picker,
+                  styles.existing_item_box,
+                ]}
+                selectedValue={selectedCategory}
+                onValueChange={(itemValue, itemIndex) =>
+                  setSelectedCategory(itemValue)
+                }
+                >
+                <Picker.Item
+                  style={[
+                    styles.step1_pickerItem,
+                    styles.step1_pickerItem_item1
+                    ]}
+                  label="Leadership skills"
+                  value="Leader"
+                />
+                <Picker.Item
+                  style={styles.step1_pickerItem}
+                  label="Communication skills"
+                  value="Communication"
+                />
+                <Picker.Item
+                  style={styles.step1_pickerItem}
+                  label="Time management skills"
+                  value="Time"
+                />
+                <Picker.Item
+                  style={styles.step1_pickerItem}
+                  label="Add more.."
+                  value="Add"
+                />
+              </Picker>
+            </View>
           </View>
         )}
 
@@ -407,7 +472,7 @@ export default function TaskPopup({ action }) {
               justifyContent: "space-around",
               alignItems: "center",
             }}
-          >
+            >
             <View>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
@@ -422,7 +487,7 @@ export default function TaskPopup({ action }) {
                     fontFamily: "Comfortaa",
                     fontSize: 16,
                   }}
-                >
+                  >
                   <Text style={{ fontWeight: "bold" }}>Task</Text>{" "}
                   <Text style={{ color: "#000000", opacity: "70%"}}>
                     {" "}
@@ -449,9 +514,10 @@ export default function TaskPopup({ action }) {
                     }}>
                   <TextInput
                     style={[styles.input, {
-                      border: "none",
+                      borderWidth: 0,
                       width: 200,
                       marginTop: 0,
+                      borderBottomWidth: 0,
                     }]}
                     onChangeText={onTask}
                     value={task}
@@ -459,6 +525,7 @@ export default function TaskPopup({ action }) {
                     editable
                     maxLength={60}
                     numberOfLines={4}
+                    // underlineColorAndroid='transparent'
                   />
                 </View>
               </View>
@@ -472,24 +539,35 @@ export default function TaskPopup({ action }) {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              marginTop: "1.5em",
+              height: 50,
+              marginTop: 30,
+              marginBottom: 30,
             }}
-          >
-            <View>
+            >
+            <View
+              style={{ width: 25, resizeMode: "contain" }}>
               <Image
                 style={{ height: 25, width: 25, resizeMode: "contain" }}
                 source={require("../../assets/common/create_goals/icon_date.png")}
               />
             </View>
-            <View style={{ flexDirection: "column", flex: 0.7 }}>
-              <View>
+            <View
+              style={{
+                flexDirection: "column",
+                flex: 0.7,
+              }}>
+              <View
+                style={[
+                  styles.deadline_cont,
+                  {height: 60,}
+                  ]}>
                 <Text
                   style={{
                     color: "#484644",
                     fontFamily: "Comfortaa",
                     fontSize: 16,
                   }}
-                >
+                  >
                   <Text style={{ fontWeight: "bold" }}>Deadline</Text>{" "}
                   <Text style={{ color: "#000000", opacity: "70%" }}>(optional)</Text>
                 </Text>
@@ -497,18 +575,19 @@ export default function TaskPopup({ action }) {
                   style={{
                     flexDirection: "row",
                     justifyContent: "space-between",
-                    flex: 1,
-                    padding: "0.1em",
-                    paddingBottom: "0.5em"
+                    height: 30,
                   }}
                 >
                   <View style={{
-                  }}>
+                      backgroundColor: "#fff",
+                      flex: 0.3,
+                      borderRadius: 10,
+                    }}>
                     <Picker
                       style={[styles.picker, {
                         backgroundColor: "ffffff",
                         borderRadius: 10,
-                        width: "5.5rem",
+                        // width: "5.5rem",
                       }]}
                       selectedValue={Month}
                       onValueChange={(itemValue, itemIndex) =>
@@ -572,12 +651,16 @@ export default function TaskPopup({ action }) {
                   </View>
 
                   <View
-                    // style={{ flex: 0.3 }}
-                    >
+                    style={{
+                      backgroundColor: "#fff",
+                      flex: 0.3,
+                      borderRadius: 10,
+                    }}
+                      >
                     <Picker
                       style={[styles.picker, {
                         borderRadius: 10,
-                        width: "2.5rem",
+                        // width: "2.5rem",
                       }]}
                       selectedValue={Date}
                       onValueChange={(itemValue, itemIndex) =>
@@ -620,12 +703,16 @@ export default function TaskPopup({ action }) {
                   </View>
 
                   <View
-                    // style={{ flex: 0.3 }}
+                    style={{
+                      backgroundColor: "#fff",
+                      flex: 0.3,
+                      borderRadius: 10,
+                    }}
                     >
                     <Picker
                       style={[styles.picker, {
                         borderRadius: 10,
-                        width: "3.5rem",
+                        // width: "3.5rem",
                       }]}
                       selectedValue={Year}
                       onValueChange={(itemValue, itemIndex) =>
@@ -651,7 +738,7 @@ export default function TaskPopup({ action }) {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              marginTop: "1.5em",
+              // marginTop: "1.5em",
             }}
           >
             <Image
@@ -776,7 +863,7 @@ export default function TaskPopup({ action }) {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              marginTop: "1.5em",
+              // marginTop: "1.5em",
             }}
           >
             {/* <Switch
@@ -832,7 +919,7 @@ export default function TaskPopup({ action }) {
                 style={{
                   flexDirection: "row",
                   alignSelf: "center",
-                  marginTop: "1em",
+                  // marginTop: "1em",
                 }}
               >
                 <Switch
@@ -863,7 +950,7 @@ export default function TaskPopup({ action }) {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              marginTop: "1.5em",
+              // marginTop: "1.5em",
             }}
           >
             <View style={{ flexDirection: "column", flex: 0.7 }}>
@@ -885,7 +972,7 @@ export default function TaskPopup({ action }) {
                     flexDirection: "row",
                     justifyContent: "space-between",
                     flex: 1,
-                    padding: "0.1em",
+                    // padding: "0.1em",
                   }}
                 >
                   <View style={{ flex: 0.4 }}>
@@ -993,6 +1080,7 @@ export default function TaskPopup({ action }) {
             </View>
           </View>
         )}
+          {/* </ScrollView> */}
         </TouchableOpacity>
       </View>
 
@@ -1014,11 +1102,17 @@ export default function TaskPopup({ action }) {
         )}
 
         {setpnum === 3 && (
-          <Button style={styles.btn} onPress={action} textColor="black" labelStyle={styles.buttontxt}>Done</Button>
+          <Button
+            style={styles.btn}
+            onPress={action}
+            textColor="black"
+            labelStyle={styles.buttontxt}>
+              Done
+          </Button>
         )}
         </TouchableOpacity>
       </View>
-{/*
+      {/*
       <View style={styles.stepcont}></View>
       {setpnum === 0 && (
         <Image
