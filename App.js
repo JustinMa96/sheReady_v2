@@ -15,7 +15,8 @@ import Login from "./screens/login";
 import Test from "./screens/test";
 import Testgoal from "./screens/testgoal";
 import Testhome from "./screens/testhome";
-import Testsetting from "./screens/testsetting";
+import Testsetting from "./screens/test_setting";
+import Testcomm from "./screens/tesetcommunity";
 import Testshop from "./screens/testshop";
 
 const Stack = createNativeStackNavigator();
@@ -72,6 +73,7 @@ export default function App() {
         <Stack.Screen name="Testgoal" component={Testgoal} />
         <Stack.Screen name="Testhome" component={Testhome} />
         <Stack.Screen name="Testsetting" component={Testsetting} />
+        <Stack.Screen name="Testcomm" component={Testcomm} />
         <Stack.Screen name="Testshop" component={Testshop} />
       </Stack.Navigator>
     </NavigationContainer>

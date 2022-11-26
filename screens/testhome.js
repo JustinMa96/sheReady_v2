@@ -281,13 +281,24 @@ export default function Testhome({ navigation }) {
               visible={visible}
               onDismiss={hideModal}
               contentContainerStyle={containerStyle}
+              style={{
+                  position: "absolute",
+                  top: 0,
+                  height: "100%"
+                }}
             >
               <IconButton
                 onPress={hideModal}
                 icon="close-outline"
                 iconColor={colors.text}
               ></IconButton>
-              <TaskPopup action={changeCard} />
+              <TaskPopup
+                action={changeCard}
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                }}
+              />
             </Modal>
           </View>
         </Portal>
