@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   },
 
   buttoncont: {
-    marginTop: 50,
+    marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   },
 
   //Repeat section CSS>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-  switchcont: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+  // switchcont: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
 
   notiBox: {
     display: "flex",
@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
   },
 
   btnNormal: {
-    backgroundColor: "#ffffff",
+    // backgroundColor: "#ffffff",
+    backgroundColor: "#fff",
     height: 26,
     width: 26,
     borderRadius: 26 / 2,
@@ -135,18 +136,22 @@ const styles = StyleSheet.create({
   },
   iconRepeat: {
     width: 28,
-    height: 28,
-    marginTop: 30,
+    // height: 28,
+    // marginTop: 30,
   },
   repeatCol: {
-    marginLeft: 15,
     display: "flex",
     flexDirection: "column",
+    justifyContent: "flex-start",
+    height: 80,
+    marginTop: 0,
   },
   repeatRow: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginTop: 10,
   },
 
   pickerCont: {
@@ -163,6 +168,11 @@ const styles = StyleSheet.create({
     border: "none",
     justifyContent: "space-between",
 
+  },
+
+  picker_date: {
+    overflow: "hidden",
+    background: "pink"
   },
 
   step1_picker: {
@@ -576,19 +586,25 @@ export default function TaskPopup({ action }) {
                     flexDirection: "row",
                     justifyContent: "space-between",
                     height: 30,
+                    marginTop: 10,
                   }}
-                >
-                  <View style={{
-                      backgroundColor: "#fff",
-                      flex: 0.3,
-                      borderRadius: 10,
-                    }}>
-                    <Picker
-                      style={[styles.picker, {
-                        backgroundColor: "ffffff",
+                  >
+                  <View style={[
+                      styles.picker_date,
+                      {
+                        backgroundColor: "#fff",
+                        flex: 0.3,
                         borderRadius: 10,
-                        // width: "5.5rem",
-                      }]}
+                      }]}>
+                    <Picker
+                      style={[
+                        styles.picker,
+                        {
+                          backgroundColor: "ffffff",
+                          borderRadius: 10,
+                          // width: "5.5rem",
+                        }
+                      ]}
                       selectedValue={Month}
                       onValueChange={(itemValue, itemIndex) =>
                         setMonth(itemValue)
@@ -651,11 +667,14 @@ export default function TaskPopup({ action }) {
                   </View>
 
                   <View
-                    style={{
-                      backgroundColor: "#fff",
-                      flex: 0.3,
-                      borderRadius: 10,
-                    }}
+                    style={[
+                      styles.picker_date,
+                      {
+                        backgroundColor: "#fff",
+                        flex: 0.3,
+                        borderRadius: 10,
+                      }
+                      ]}
                       >
                     <Picker
                       style={[styles.picker, {
@@ -703,11 +722,13 @@ export default function TaskPopup({ action }) {
                   </View>
 
                   <View
-                    style={{
-                      backgroundColor: "#fff",
-                      flex: 0.3,
-                      borderRadius: 10,
-                    }}
+                    style={[
+                      styles.picker_date,
+                      {
+                        backgroundColor: "#fff",
+                        flex: 0.3,
+                        borderRadius: 10,
+                      }]}
                     >
                     <Picker
                       style={[styles.picker, {
@@ -738,14 +759,20 @@ export default function TaskPopup({ action }) {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
-              // marginTop: "1.5em",
+              marginTop: 30,
+              height: 30,
             }}
           >
             <Image
-              style={{ height: 25, width: 25, resizeMode: "contain" }}
+              style={{ height: 25, width: 25, resizeMode: "contain", marginTop: -20}}
               source={require("../../assets/common/create_goals/icon_repeat.png")}
             />
-            <View style={{ flexDirection: "column", flex: 0.7 }}>
+            <View style={[
+              styles.repeatCol,
+              {
+                flexDirection: "column",
+                flex: 0.7
+                }]}>
               <View style={styles.notiBox}>
                 <Text
                   style={{
