@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
   doorCont: {
     display: "flex",
     position: "absolute",
-    alignSelf: "end",
-    justifyContent: "flex-start",
-    width: "60%",
+    alignSelf: "flex-end",
+    justifyContent: "flex-end",
+    // width: "60%",
+    maxWidth: "90%",
     height: "100%",
     borderTopLeftRadius: 180,
     borderTopRightRadius: 180,

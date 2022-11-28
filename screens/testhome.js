@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
   sarearea: {
     height: "100%",
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
+    flex: 1,
     flexDirection: "column",
-    justifyContent: "flex-start",
+    // justifyContent: "space-evenly",
+    alignItems: "center",
   },
 
   homecont: {
@@ -40,16 +40,17 @@ const styles = StyleSheet.create({
 
   newscont: {
     width: "100%",
-    marginBottom: 35,
     display: "flex",
+    flex: 1.6,
   },
 
   taskcont: {
     alignItems: "center",
     width: "100%",
     marginBottom: 35,
-    height: 280,
     display: "flex",
+    marginTop: 20,
+    flex: 1.8,
   },
 
   text: {
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     borderBottomLeftRadius: 40,
     width: "90%",
+    height: "100%",
     alignItems: "center",
     display: "flex",
     padding: 10,
@@ -79,6 +81,10 @@ const styles = StyleSheet.create({
 
   bgImg: {
     zIndex: 1,
+  },
+
+  dots: {
+    zIndex: 0,
   },
 
   date: {
@@ -108,10 +114,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 
-  iconBtnBox: {
+  iconBtnCont: {
+    display: "flex",
     flexDirection: "row",
     width: "90%",
     justifyContent: "space-between",
+    flex: .5,
+    // backgroundColor: "pink",
     marginTop: 20,
   }
 });
@@ -167,11 +176,19 @@ export default function Testhome({ navigation }) {
 
   return (
     <SafeAreaView
-     style={styles.sarearea}>
+      style={styles.sarearea}>
       <Provider>
         <Portal>
           <Prof_Window nav={navigation}/>
           <View style={styles.homecont}>
+
+            <ImageBackground
+              resizeMode="cover"
+              style={[styles.bgImg, styles.dots]}
+              source={require("../assets/common/dots.png")}
+            >
+            </ImageBackground>
+
             {/* Hazel */}
             <View style={styles.newscont}>
               <Button_Gate_Img action={navigation}></Button_Gate_Img>
@@ -270,7 +287,7 @@ export default function Testhome({ navigation }) {
 
 
 
-            <View style={styles.iconBtnBox}>
+            <View style={styles.iconBtnCont}>
               <IconBtn_Goals action={navigation} />
               <IconBtn_Wins action={navigation} />
             </View>
@@ -283,14 +300,20 @@ export default function Testhome({ navigation }) {
               contentContainerStyle={containerStyle}
               style={{
                   position: "absolute",
+                  // backgroundColor: "pink",
                   top: 0,
-                  height: "100%"
+                  height: "100%",
+                  margin: 0,
+                  marginTop: 0,
                 }}
             >
               <IconButton
                 onPress={hideModal}
                 icon="close-outline"
+                // icon="close"
                 iconColor={colors.text}
+                // size={20}
+                // sytle={{backgroundColor: "pink",width:200,height:100,zIndex:100,position:"absolute", top: 20, left: 200}}
               ></IconButton>
               <TaskPopup
                 action={changeCard}

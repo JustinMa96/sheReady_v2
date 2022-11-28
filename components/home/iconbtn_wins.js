@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   btnBox: {
     width: 110,
     height: 70,
-    margin: 10,
+    // margin: 10,
     borderRadius: 30,
     borderBottomLeftRadius: 0,
     overflow: "hidden",

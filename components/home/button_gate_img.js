@@ -30,8 +30,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     position: "relative",
-    width: "100%",
-    height: 256,
+    // width: "100%",
+    width: 400,
+    height: 200,
     paddingLeft: "5%",
     paddingRight: "5%",
     alignItems: "center",
@@ -40,12 +41,13 @@ const styles = StyleSheet.create({
   },
   imgCont: {
     overflow: "hidden",
-    height: 256,
-    // width: 201,
+    height: 200,
+    width: 150,
     flexGrow: 1,
     borderRadius: 150,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
+    marginTop: 20,
   },
   img: {
     display: "block",
@@ -53,20 +55,20 @@ const styles = StyleSheet.create({
     height: "100%",
     fontSize: 13,
   },
-  quote_box: {
+  quote_cont: {
     display: "flex",
-    height: 256,
+    height: 200,
     width: 200,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-start",
-    paddingTop: 60,
+    paddingTop: 50,
     paddingLeft: 10,
   },
   quote_ttl: {
     fontFamily: "Comfortaa",
     fontWeight: 400,
-    height: 20,
+    height: 14,
     fontSize: 14,
     flexWrap: "wrap",
   },
@@ -81,8 +83,9 @@ const styles = StyleSheet.create({
   },
   stairsImg: {
     width: 200,
-    height: 70,
-    marginLeft: -20,
+    height: 60,
+    marginLeft: -35,
+    marginTop: -10,
   },
 });
 
@@ -106,7 +109,7 @@ export default function Button_Gate_Img({
           source={imgSrc} />
       </TouchableOpacity>
       <View
-        style={styles.quote_box}>
+        style={styles.quote_cont}>
         <Text style={styles.quote_ttl}>
           QUOTE OF THE DAY
         </Text>

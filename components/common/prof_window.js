@@ -13,10 +13,11 @@ const styles = StyleSheet.create({
   profWrap: {
     width: "100%",
     height: 83,
-    marginTop: 10,
+    // marginTop: 10,
     display: "flex",
     flexDirection: "row",
     justifyContent: "flex-end",
+    alignItems: "flex-end",
     zIndex: 5,
     position: "absolute",
   },
@@ -38,14 +39,14 @@ const styles = StyleSheet.create({
 
 export default function Prof_Window({
   // const { colors } = useTheme();
-  imgSrc = require("../../assets/common/add.png"),
+  imgSrc = require("../../assets/common/dots.png"),
   nav,
   // btnUrl = "./Community"
 }) {
   const [visible, setVisible] = React.useState(false);
   const [menuOpen, setMenuOpen] = React.useState({ height: 83 });
   const onOpen = () => {
-    setMenuOpen({ height: "100vh" });
+    setMenuOpen({ height: "100%" });
   };
   const onClose = () => {
     setMenuOpen({ height: 83 });
@@ -73,6 +74,10 @@ export default function Prof_Window({
         visible={visible}
         onDismiss={hideModal}
         contentContainerStyle={containerStyle}
+        style={{
+          // backgroundColor: "pink"
+          height: "100%"
+        }}
       >
         <Menu_Popup close={hideModal} small={onClose} action={nav} />
       </Modal>
