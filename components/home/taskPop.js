@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     borderTopLeftRadius: 200,
     borderTopRightRadius: 200,
-    height: "80%",
+    height: "90%",
+    maxHeight: 700,
     alignItems: "center",
     position: "absolute",
     bottom: 0,
@@ -42,14 +43,14 @@ const styles = StyleSheet.create({
   },
 
   maintitlecont: {
-    height: 120,
+    height: 90,
     width: "40%",
   },
 
   maintitle: {
     resizeMode: "contain",
-    height: 100,
-    width: 200,
+    height: 70,
+    width: "100%",
   },
 
   contentcont: {
@@ -188,7 +189,6 @@ const styles = StyleSheet.create({
     fontFamily: "Comfortaa",
     fontSize: 16,
     justifyContent: "flex-start",
-    // height: 50,
   },
 
   step1_picker_enterGoal: {
@@ -207,8 +207,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     height: 200,
     padding: 0,
-    // marginTop: -70,
-    // overflow: "hidden",
   },
 
   step1_pickerItem: {
