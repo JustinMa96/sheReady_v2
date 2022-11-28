@@ -156,7 +156,7 @@ var month = now.getMonthName();
 var year = now.getFullYear();
 var day = now.getDate();
 
-export default function Testhome({ navigation }) {
+export default function Test({ navigation }) {
   const { colors } = useTheme();
   const date = `${month} ${day}, ${year}  ${weekday}`;
   const [visible, setVisible] = React.useState(false);
