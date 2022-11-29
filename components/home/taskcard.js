@@ -35,7 +35,7 @@ var month = now.getMonthName();
 var year = now.getFullYear();
 var day = now.getDate();
 
-export default function TaskCard() {
+export default function TaskCard({ show, changeCard }) {
   const { colors } = useTheme();
   const date = `${month} ${day}, ${year}  ${weekday}`;
   const [firstUse, setFirstUse] = React.useState(true);
@@ -67,7 +67,7 @@ export default function TaskCard() {
               No task yet.
             </Text>
             <Text>Tap the “+” below to get started.</Text>
-            <Button>
+            <Button onPress={show}>
               <Image
                 style={styles.circle}
                 source={require("../../assets/Home/add.png")}
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     borderBottomLeftRadius: 40,
     width: "100%",
-    height: "60%",
+    height: 300,
     alignItems: "center",
   },
 

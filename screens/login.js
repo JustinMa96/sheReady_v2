@@ -8,13 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signOut,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import GateButton from "../components/common/gatebutton";
 import Logo from "../components/login/logo";
 import MyTextInput from "../components/common/mytextinput";
@@ -60,6 +54,10 @@ const styles = StyleSheet.create({
 export default function Login({ navigation }) {
   const [userEmail, onChangeUserEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
+  const SignIn = async () => {
+    const user = await signInWithEmailAndPassword(auth, email, password);
+    console.log(user);
+  };
 
   return (
     <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
@@ -92,7 +90,14 @@ export default function Login({ navigation }) {
               </Text>
             </Button>
           </View>
-          <GateButton txt="Sign In" path={"Home"} action={()=>navigation.navigate("Home")} />
+          <GateButton
+            txt="Sign In"
+            path={"Home"}
+            action={() => {
+              SignIn();
+              navigation.navigate("Home");
+            }}
+          />
           <View style={styles.separator}>
             <View style={styles.hairline} />
             <View style={styles.circle} />

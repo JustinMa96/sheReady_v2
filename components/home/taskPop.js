@@ -16,7 +16,11 @@ import { Button, IconButton } from "react-native-paper";
 ("react-native");
 import { useTheme } from "@react-navigation/native";
 import { Picker } from "@react-native-picker/picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
 // import { ScrollView } from "react-native-web";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db, auth } from "../../firebaseConfig";
+import { getAuth } from "firebase/auth";
 
 const styles = StyleSheet.create({
   popupCont: {
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
   },
 
   btn: {
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     margin: 10,
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
 
   buttontxt: {
@@ -128,7 +133,7 @@ const styles = StyleSheet.create({
   },
   txtNormal: {
     fontFamily: "Comfortaa",
-    fontSize: 20
+    fontSize: 20,
   },
   txtPress: {
     fontFamily: "Comfortaa",
@@ -166,12 +171,11 @@ const styles = StyleSheet.create({
     // marginTop: "1em",
     border: "none",
     justifyContent: "space-between",
-
   },
 
   picker_date: {
     overflow: "hidden",
-    background: "pink"
+    background: "pink",
   },
 
   step1_picker: {
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     marginVertical: 5,
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
 
   exampleCont: {
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
 
   scrollViewBox: {
     display: "flex",
-    overflow: "scroll"
+    overflow: "scroll",
   },
 
   scrollView: {
@@ -257,10 +261,25 @@ const styles = StyleSheet.create({
     // marginVertical: 100,
     display: "flex",
   },
-
+  datePickerStyle: {
+    width: 200,
+    marginTop: 20,
+  },
 });
 
 export default function TaskPopup({ action }) {
+  React.useEffect(() => {
+    const getUser = async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      console.log(user.uid);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      const docs = docSnap.data();
+    };
+
+    getUser();
+  }, []);
   const { colors } = useTheme();
   const [currentJob, onCurrentJob] = React.useState();
   const [idealJob, onIdealJob] = React.useState();
@@ -268,14 +287,29 @@ export default function TaskPopup({ action }) {
   const [selectedCategory, setSelectedCategory] =
     React.useState("Pick a category");
   const [task, onTask] = React.useState();
-  const [Month, setMonth] = React.useState();
-  const [Date, setDate] = React.useState();
-  const [Year, setYear] = React.useState();
-  const [Time, setTime] = React.useState();
+  const [repeat, onRepeat] = React.useState();
   const [Hour, setHour] = React.useState();
   const [Minute, setMinute] = React.useState();
 
-  const onNext = () => {
+  const onNext = async () => {
+    if ((setpnum = 0)) {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      console.log(user.uid);
+      await setDoc(doc(db, "users", user.uid), {
+        currentJob: currentJob,
+        idealJob: idealJob,
+      });
+    } else if ((setpnum = 1)) {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      console.log(user.uid);
+      await setDoc(doc(db, "users", user.uid), {
+        goals: {
+          goalName: goal,
+        },
+      });
+    }
     setStepNum(setpnum + 1);
   };
 
@@ -289,10 +323,8 @@ export default function TaskPopup({ action }) {
   const [isPress, setIsPress] = React.useState(false);
 
   const handleButton = () => {
-    setIsPress(current => !current)
+    setIsPress((current) => !current);
   };
-
-
 
   const touchProps = {
     activeOpacity: 2,
@@ -306,6 +338,11 @@ export default function TaskPopup({ action }) {
   const toggleSwitch = () => {
     setEnabled((oldValue) => !oldValue);
   };
+  const [date, setDate] = useState(new Date(1598051730000));
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setDate(currentDate);
+  };
 
   const thumbColorOn = Platform.OS === "android" ? "#878787" : "#f3f3f3";
   const thumbColorOff = Platform.OS === "android" ? "#878787" : "#f3f3f3";
@@ -317,12 +354,14 @@ export default function TaskPopup({ action }) {
 
   return (
     <View
-      style={[styles.popupCont,
+      style={[
+        styles.popupCont,
         {
           shadowOffset: { width: 0, height: -4 },
           backgroundColor: colors.background,
-        }]}
-      >
+        },
+      ]}
+    >
       <Text style={styles.popuptitle}>Create Goals</Text>
 
       <View style={styles.maintitlecont}>
@@ -353,150 +392,315 @@ export default function TaskPopup({ action }) {
       </View>
 
       <View style={styles.contentcont}>
-      <TouchableOpacity style={styles.scrollViewBox}>
-        {/* <ScrollView style={styles.scrollView}> */}
-        {setpnum === 0 && (
-          <View>
-            <Text
-              style={{
-                color: "#484644",
-                fontFamily: "Comfortaa",
-                fontSize: 20,
-                marginTop: 15,
-              }}
-            >
-              Your current job title
-            </Text>
-            <IconButton
-              icon="magnify"
-              iconColor={colors.text}
-              style={{ position: "absolute", right: 0, bottom: 0 }}
-            ></IconButton>
-            <TextInput
-              style={styles.input}
-              onChangeText={onCurrentJob}
-              value={currentJob}
-            />
-          </View>
-        )}
-        {setpnum === 0 && (
-          <View>
-            <Text
-              style={{
-                color: "#484644",
-                fontFamily: "Comfortaa",
-                fontSize: 20,
-                marginTop: 15,
-              }}
-            >
-              Your ideal job title
-            </Text>
-            <IconButton
-              icon="magnify"
-              iconColor={colors.text}
-              style={{ position: "absolute", right: 0, bottom: 0 }}
-            ></IconButton>
-            <TextInput
-              style={styles.input}
-              onChangeText={onIdealJob}
-              value={idealJob}
-            />
-          </View>
-        )}
-
-        {setpnum === 1 && (
-          <View style={styles.pickerCont}>
-            <View style={[
-                styles.step1_picker,
-                styles.step1_picker_enterGoal,
-              ]}>
-              <TextInput
-                style={{fontSize: 20, fontFamily: "Comfortaa"}}
-                placeholder="Enter your goal"
-                placeholderTextColor="rgba(72, 70, 68, 0.7)"
-                onChangeText={onGoal}
-                value={goal}
-              />
-            </View>
-
-            <View style={[
-                styles.scrollable,
-                {flexDirection: "row", flexWrap: "wrap" }
-              ]}>
-              <View style={styles.exampleCont}>
-                <Text style={styles.example}>Leadership Skills;</Text>
-              </View>
-              <View style={styles.exampleCont}>
-                <Text style={styles.example}>Communication Skills;</Text>
-              </View>
-              <View style={styles.exampleCont}>
-                <Text style={styles.example}>Time Management Skills;</Text>
-              </View>
-            </View>
-
-            <Text style={[styles.txtNormal, {fontWeight: "bold", marginBottom: 5, marginTop: 20}]}>Pick Existing Goal</Text>
-            <View style={[
-                styles.existing_cont
-              ]}>
-              <Picker
-                style={[
-                  styles.step1_picker,
-                  styles.existing_item_box,
-                ]}
-                selectedValue={selectedCategory}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedCategory(itemValue)
-                }
-                >
-                <Picker.Item
-                  style={[
-                    styles.step1_pickerItem,
-                    styles.step1_pickerItem_item1
-                    ]}
-                  label="Leadership skills"
-                  value="Leader"
-                />
-                <Picker.Item
-                  style={styles.step1_pickerItem}
-                  label="Communication skills"
-                  value="Communication"
-                />
-                <Picker.Item
-                  style={styles.step1_pickerItem}
-                  label="Time management skills"
-                  value="Time"
-                />
-              </Picker>
-            </View>
-          </View>
-        )}
-
-        {setpnum === 2 && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-            >
+        <TouchableOpacity style={styles.scrollViewBox}>
+          {/* <ScrollView style={styles.scrollView}> */}
+          {setpnum === 0 && (
             <View>
-              <Image
-                style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/common/create_goals/icon_task.png")}
+              <Text
+                style={{
+                  color: "#484644",
+                  fontFamily: "Comfortaa",
+                  fontSize: 20,
+                  marginTop: 15,
+                }}
+              >
+                Your current job title
+              </Text>
+              <IconButton
+                icon="magnify"
+                iconColor={colors.text}
+                style={{ position: "absolute", right: 0, bottom: 0 }}
+              ></IconButton>
+              <TextInput
+                style={styles.input}
+                onChangeText={onCurrentJob}
+                value={currentJob}
               />
             </View>
-            <View style={{ flexDirection: "column", flex: 0.7 }}>
+          )}
+          {setpnum === 0 && (
+            <View>
+              <Text
+                style={{
+                  color: "#484644",
+                  fontFamily: "Comfortaa",
+                  fontSize: 20,
+                  marginTop: 15,
+                }}
+              >
+                Your ideal job title
+              </Text>
+              <IconButton
+                icon="magnify"
+                iconColor={colors.text}
+                style={{ position: "absolute", right: 0, bottom: 0 }}
+              ></IconButton>
+              <TextInput
+                style={styles.input}
+                onChangeText={onIdealJob}
+                value={idealJob}
+              />
+            </View>
+          )}
+
+          {setpnum === 1 && (
+            <View style={styles.pickerCont}>
+              <View
+                style={[styles.step1_picker, styles.step1_picker_enterGoal]}
+              >
+                <TextInput
+                  style={{ fontSize: 20, fontFamily: "Comfortaa" }}
+                  placeholder="Enter your goal"
+                  placeholderTextColor="rgba(72, 70, 68, 0.7)"
+                  onChangeText={onGoal}
+                  value={goal}
+                />
+              </View>
+
+              <View
+                style={[
+                  styles.scrollable,
+                  { flexDirection: "row", flexWrap: "wrap" },
+                ]}
+              >
+                <View style={styles.exampleCont}>
+                  <Text style={styles.example}>Leadership Skills;</Text>
+                </View>
+                <View style={styles.exampleCont}>
+                  <Text style={styles.example}>Communication Skills;</Text>
+                </View>
+                <View style={styles.exampleCont}>
+                  <Text style={styles.example}>Time Management Skills;</Text>
+                </View>
+              </View>
+
+              <Text
+                style={[
+                  styles.txtNormal,
+                  { fontWeight: "bold", marginBottom: 5, marginTop: 20 },
+                ]}
+              >
+                Pick Existing Goal
+              </Text>
+              <View style={[styles.existing_cont]}>
+                <Picker
+                  style={[styles.step1_picker, styles.existing_item_box]}
+                  selectedValue={selectedCategory}
+                  onValueChange={(itemValue, itemIndex) =>
+                    setSelectedCategory(itemValue)
+                  }
+                >
+                  <Picker.Item
+                    style={[
+                      styles.step1_pickerItem,
+                      styles.step1_pickerItem_item1,
+                    ]}
+                    label="Leadership skills"
+                    value="Leader"
+                  />
+                  <Picker.Item
+                    style={styles.step1_pickerItem}
+                    label="Communication skills"
+                    value="Communication"
+                  />
+                  <Picker.Item
+                    style={styles.step1_pickerItem}
+                    label="Time management skills"
+                    value="Time"
+                  />
+                </Picker>
+              </View>
+            </View>
+          )}
+
+          {setpnum === 2 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
               <View>
-                <Text
-                  style={{
-                    color: "#484644",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                  }}
+                <Image
+                  style={{ height: 25, width: 25, resizeMode: "contain" }}
+                  source={require("../../assets/common/create_goals/icon_task.png")}
+                />
+              </View>
+              <View style={{ flexDirection: "column", flex: 0.7 }}>
+                <View>
+                  <Text
+                    style={{
+                      color: "#484644",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                    }}
                   >
-                  <Text style={{ fontWeight: "bold", fontSize: 20 }}>Task</Text>{" "}
-                  <Text style={{ color: "#808080", fontSize: 20}}>
-                    {" "}
+                    <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Task
+                    </Text>
+                    <Text style={{ color: "#808080", fontSize: 20 }}>
+                      ( required )
+                      <Text
+                        style={{
+                          color: "red",
+                          fontSize: 20,
+                          paddingTop: -2,
+                          position: "relative",
+                          top: -3,
+                        }}
+                      >
+                        *
+                      </Text>
+                    </Text>
+                  </Text>
+                  <View
+                    style={{
+                      backgroundColor: "#ffffff",
+                      borderRadius: 10,
+                      marginTop: 10,
+                      height: 60,
+                    }}
+                  >
+                    <TextInput
+                      style={[
+                        styles.input,
+                        {
+                          borderWidth: 0,
+                          width: 200,
+                          marginTop: 0,
+                          borderBottomWidth: 0,
+                        },
+                      ]}
+                      onChangeText={onTask}
+                      value={task}
+                      multiline={true}
+                      editable
+                      maxLength={60}
+                      numberOfLines={4}
+                      // underlineColorAndroid='transparent'
+                    />
+                  </View>
+                </View>
+              </View>
+            </View>
+          )}
+
+          {setpnum === 2 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                height: 50,
+                marginTop: 30,
+                marginBottom: 30,
+              }}
+            >
+              <View style={{ width: 25, resizeMode: "contain" }}>
+                <Image
+                  style={{ height: 25, width: 25, resizeMode: "contain" }}
+                  source={require("../../assets/common/create_goals/icon_date.png")}
+                />
+              </View>
+              <View
+                style={{
+                  flexDirection: "column",
+                  flex: 0.7,
+                }}
+              >
+                <View style={[styles.deadline_cont, { height: 60 }]}>
+                  <Text
+                    style={{
+                      color: "#484644",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                    }}
+                  >
+                    <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Deadline
+                    </Text>
+                    <Text style={{ color: "#808080", fontSize: 20 }}>
+                      ( required )
+                    </Text>
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: 20,
+                        paddingTop: -2,
+                        position: "relative",
+                        top: -3,
+                      }}
+                    >
+                      *
+                    </Text>
+                  </Text>
+                  <DateTimePicker
+                    value={date}
+                    minimumDate={new Date()}
+                    style={{ width: 150 }}
+                    onChange={onChange}
+                  />
+
+                  <View
+                    style={{
+                      justifyContent: "space-between",
+                      height: 30,
+                      marginTop: 10,
+                    }}
+                  ></View>
+                </View>
+              </View>
+            </View>
+          )}
+
+          {setpnum === 2 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                marginTop: 30,
+                height: 30,
+              }}
+            >
+              <Image
+                style={{
+                  height: 25,
+                  width: 25,
+                  resizeMode: "contain",
+                  marginTop: -20,
+                }}
+                source={require("../../assets/common/create_goals/icon_repeat.png")}
+              />
+              <View
+                style={[
+                  styles.repeatCol,
+                  {
+                    flexDirection: "column",
+                    flex: 0.7,
+                  },
+                ]}
+              >
+                <View style={styles.notiBox}>
+                  <Text
+                    style={{
+                      // color: "#FFFFFF",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                    }}
+                  >
+                    <Text Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Repeat
+                    </Text>
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#808080",
+                      fontFamily: "Comfortaa",
+                      fontSize: 20,
+                    }}
+                  >
                     ( required )
                     <Text
                       style={{
@@ -507,389 +711,138 @@ export default function TaskPopup({ action }) {
                         top: -3,
                       }}
                     >
-                    *
+                      *
                     </Text>
                   </Text>
-                </Text>
+                </View>
+
+                {/* <View style={styles.repeatRow}>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      S
+                    </Text>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      M
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      T
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      W
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      T
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      F
+                    </Text>
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    style={styles.isPress ? styles.btnPress : styles.btnNormal}
+                    {...touchProps}
+                  >
+                    <Text
+                      style={
+                        styles.isPress ? styles.txtPress : styles.txtNormal
+                      }
+                    >
+                      S
+                    </Text>
+                  </TouchableHighlight>
+                </View> */}
                 <View
                   style={{
-                      backgroundColor: "#ffffff",
-                      borderRadius: 10,
-                      marginTop: 10,
-                      height: 60,
-                    }}>
+                    backgroundColor: "#ffffff",
+                    borderRadius: 10,
+                    marginTop: 10,
+                    height: 60,
+                  }}
+                >
                   <TextInput
-                    style={[styles.input, {
-                      borderWidth: 0,
-                      width: 200,
-                      marginTop: 0,
-                      borderBottomWidth: 0,
-                    }]}
-                    onChangeText={onTask}
-                    value={task}
-                    multiline={true}
+                    style={[
+                      styles.input,
+                      {
+                        borderWidth: 0,
+                        width: 200,
+                        marginTop: 0,
+                        borderBottomWidth: 0,
+                      },
+                    ]}
+                    onChangeText={onRepeat}
+                    value={repeat}
                     editable
-                    maxLength={60}
-                    numberOfLines={4}
+                    maxLength={3}
+                    numberOfLines={1}
                     // underlineColorAndroid='transparent'
                   />
                 </View>
               </View>
             </View>
-          </View>
-        )}
+          )}
 
-        {setpnum === 2 && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              height: 50,
-              marginTop: 30,
-              marginBottom: 30,
-            }}
-            >
-            <View
-              style={{ width: 25, resizeMode: "contain" }}>
-              <Image
-                style={{ height: 25, width: 25, resizeMode: "contain" }}
-                source={require("../../assets/common/create_goals/icon_date.png")}
-              />
-            </View>
+          {setpnum === 3 && (
             <View
               style={{
-                flexDirection: "column",
-                flex: 0.7,
-              }}>
-              <View
-                style={[
-                  styles.deadline_cont,
-                  {height: 60,}
-                  ]}>
-                <Text
-                  style={{
-                    color: "#484644",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                  }}
-                  >
-                  <Text style={{ fontWeight: "bold", fontSize: 20 }}>Deadline</Text>{" "}
-                  <Text style={{ color: "#808080", fontSize: 20 }}>( optional )</Text>
-                </Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    height: 30,
-                    marginTop: 10,
-                  }}
-                  >
-                  <View style={[
-                      styles.picker_date,
-                      {
-                        backgroundColor: "#fff",
-                        flex: 0.3,
-                        borderRadius: 10,
-                      }]}>
-                    <Picker
-                      style={[
-                        styles.picker,
-                        {
-                          backgroundColor: "ffffff",
-                          borderRadius: 10,
-                          // width: "5.5rem",
-                        }
-                      ]}
-                      selectedValue={Month}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setMonth(itemValue)
-                      }
-                    >
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="Month"
-                        color="#484644"
-                        value="0" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="January"
-                        value="1" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="February"
-                        value="2" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="March"
-                        value="3" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="April"
-                        value="4" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="May"
-                        value="5" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="June"
-                        value="6" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="July"
-                        value="7" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="August"
-                        value="8" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="September"
-                        value="9" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="October"
-                        value="10" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="November"
-                        value="11" />
-                      <Picker.Item
-                        style={styles.step2_deadln_pickerItem}
-                        label="December"
-                        value="12" />
-                    </Picker>
-                  </View>
-
-                  <View
-                    style={[
-                      styles.picker_date,
-                      {
-                        backgroundColor: "#fff",
-                        flex: 0.3,
-                        borderRadius: 10,
-                      }
-                      ]}
-                      >
-                    <Picker
-                      style={[styles.picker, {
-                        borderRadius: 10,
-                        // width: "2.5rem",
-                      }]}
-                      selectedValue={Date}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setDate(itemValue)
-                      }
-                    >
-                      <Picker.Item label="Date" value="0" />
-                      <Picker.Item label="1" value="1" />
-                      <Picker.Item label="2" value="2" />
-                      <Picker.Item label="3" value="3" />
-                      <Picker.Item label="4" value="4" />
-                      <Picker.Item label="5" value="5" />
-                      <Picker.Item label="6" value="6" />
-                      <Picker.Item label="7" value="7" />
-                      <Picker.Item label="8" value="8" />
-                      <Picker.Item label="9" value="9" />
-                      <Picker.Item label="10" value="10" />
-                      <Picker.Item label="11" value="11" />
-                      <Picker.Item label="12" value="12" />
-                      <Picker.Item label="13" value="13" />
-                      <Picker.Item label="14" value="14" />
-                      <Picker.Item label="15" value="15" />
-                      <Picker.Item label="16" value="16" />
-                      <Picker.Item label="17" value="17" />
-                      <Picker.Item label="18" value="18" />
-                      <Picker.Item label="19" value="19" />
-                      <Picker.Item label="20" value="20" />
-                      <Picker.Item label="21" value="21" />
-                      <Picker.Item label="22" value="22" />
-                      <Picker.Item label="23" value="23" />
-                      <Picker.Item label="24" value="24" />
-                      <Picker.Item label="25" value="25" />
-                      <Picker.Item label="26" value="26" />
-                      <Picker.Item label="27" value="27" />
-                      <Picker.Item label="28" value="28" />
-                      <Picker.Item label="29" value="29" />
-                      <Picker.Item label="30" value="30" />
-                      <Picker.Item label="31" value="31" />
-                    </Picker>
-                  </View>
-
-                  <View
-                    style={[
-                      styles.picker_date,
-                      {
-                        backgroundColor: "#fff",
-                        flex: 0.3,
-                        borderRadius: 10,
-                      }]}
-                    >
-                    <Picker
-                      style={[styles.picker, {
-                        borderRadius: 10,
-                        // width: "3.5rem",
-                      }]}
-                      selectedValue={Year}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setYear(itemValue)
-                      }
-                    >
-                      <Picker.Item label="Year" value="0" />
-                      <Picker.Item label="2021" value="2021" />
-                      <Picker.Item label="2022" value="2021" />
-                      <Picker.Item label="2023" value="2022" />
-                      <Picker.Item label="2024" value="2024" />
-                    </Picker>
-                  </View>
-                </View>
-              </View>
-            </View>
-          </View>
-        )}
-
-        {setpnum === 2 && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              marginTop: 30,
-              height: 30,
-            }}
-          >
-            <Image
-              style={{ height: 25, width: 25, resizeMode: "contain", marginTop: -20}}
-              source={require("../../assets/common/create_goals/icon_repeat.png")}
-            />
-            <View style={[
-              styles.repeatCol,
-              {
-                flexDirection: "column",
-                flex: 0.7
-                }]}>
-              <View style={styles.notiBox}>
-                <Text
-                  style={{
-                    // color: "#FFFFFF",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                  }}
-                >
-                  <Text Text style={{ fontWeight: "bold", fontSize: 20 }}>
-                    Repeat
-                  </Text>{" "}
-                </Text>
-                <Text
-                  style={{
-                    color: "#808080",
-                    fontFamily: "Comfortaa",
-                    fontSize: 20,
-                  }}
-                >
-                  ( required )
-                  <Text
-                    style={{
-                      color: "red",
-                      fontSize: 20,
-                      paddingTop: -2,
-                      position: "relative",
-                      top: -3,
-                    }}
-                  >
-                    *
-                  </Text>
-                </Text>
-              </View>
-
-              <View style={styles.repeatRow}>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    S
-                  </Text>
-                </TouchableHighlight>
-      
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    M
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    T
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    W
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    T
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    F
-                  </Text>
-                </TouchableHighlight>
-                <TouchableHighlight
-                  style={styles.isPress ? styles.btnPress : styles.btnNormal}
-                  {...touchProps}
-                >
-                  <Text
-                    style={styles.isPress ? styles.txtPress : styles.txtNormal}
-                  >
-                    S
-                  </Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-          </View>
-        )}
-
-        {setpnum === 3 && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              // marginTop: "1.5em",
-            }}
-          >
-            {/* <Switch
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                // marginTop: "1.5em",
+              }}
+            >
+              {/* <Switch
               trackColor={{ false: "#878787", true: "#F39770" }}
               // thumbColor={isEnabled ? "#FFFFFF" : "#FFFFFF"}
               thumbColor={ isEnabled ? 'yellow' : 'red'} //@ts-expect-error type activeThumbColor={'red'}
@@ -897,244 +850,319 @@ export default function TaskPopup({ action }) {
               onValueChange={toggleSwitch}
               value={isEnabled}
             /> */}
-            <View
-              style={{
-                flexDirection: "column",
-                justifyContent: "space-between",
-                width: "70%",
-              }}
-            >
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    color: "#484644",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                  }}
-                >
-                  <Text style={{ fontWeight: "bold", fontSize: 20 }}>Notification</Text>
-                </Text>
-                <Text
-                  style={{
-                    color: "#808080",
-                    fontFamily: "Comfortaa",
-                    fontSize: 20,
-                  }}
-                >
-                  {" "}
-                  ( required
-                  <Text
-                    style={{
-                      color: "red",
-                      fontSize: 20,
-                      position: "relative",
-                      top: -3,
-                    }}
-                  >
-                    *{" "}
-                  </Text>
-                   )
-                </Text>
-              </View>
-
               <View
                 style={{
-                  flexDirection: "row",
-                  alignSelf: "center",
-                  // marginTop: "1em",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  width: "70%",
                 }}
               >
-                <Switch
-                  onValueChange={toggleSwitch}
-                  value={enabled}
-                  thumbColor={enabled ? thumbColorOn : thumbColorOff}
-                  trackColor={{ false: trackColorOff, true: trackColorOn }}
-                  ios_backgroundColor={trackColorOff}
-                  style={{ marginRight: 5 ,margin: 10}}
-                />
-                <Text
-                  style={{
-                    color: "#484644",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                    alignSelf: "center",
-                    marginHorizontal: 5,
-                  }}
-                >
-                  {enabled ? "ON" : "OFF"}
-                </Text>
-              </View>
-            </View>
-          </View>
-        )}
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      color: "#484644",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                    }}
+                  >
+                    <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Notification
+                    </Text>
+                  </Text>
+                  <Text
+                    style={{
+                      color: "#808080",
+                      fontFamily: "Comfortaa",
+                      fontSize: 20,
+                    }}
+                  >
+                    ( required
+                    <Text
+                      style={{
+                        color: "red",
+                        fontSize: 20,
+                        position: "relative",
+                        top: -3,
+                      }}
+                    >
+                      *{" "}
+                    </Text>
+                    )
+                  </Text>
+                </View>
 
-        {setpnum === 3 && (
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              // marginTop: "1.5em",
-            }}
-          >
-            <View style={{ flexDirection: "column", flex: 0.7 }}>
-              <View>
-                <Text
-                  style={{
-                    color: "#484644",
-                    fontFamily: "Comfortaa",
-                    fontSize: 16,
-                  }}
-                >
-                  <Text Text style={{ fontWeight: "bold", fontSize: 20 }}>
-                    Time Setting
-                  </Text>{" "}
-                  <Text style={{ color: "#808080", fontSize: 20}}>( optional )</Text>
-                </Text>
                 <View
                   style={{
                     flexDirection: "row",
-                    justifyContent: "space-between",
-                    flex: 1,
-                    // padding: "0.1em",
+                    alignSelf: "center",
+                    // marginTop: "1em",
                   }}
                 >
-                  <View style={{ flex: 0.45 }}>
-                    <Picker
-                      style={[styles.picker, {
-                        backgroundColor: "transparent",
-                        borderBottomColor: "#484644",
-                        borderBottomWidth: 1,
-                        borderStyle: "solid",
-                        borderTopWidth: 0,
-                        borderRightWidth: 0,
-                        borderLeftWidth: 0,
-                      }]}
-                      selectedValue={Hour}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setHour(itemValue)
-                      }
-                    >
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="HH" value="0" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="05" value="05" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="06" value="06" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="07" value="07" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="08" value="08" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="09" value="09" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="10" value="10" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="11" value="11" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="12" value="12" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="13" value="13" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="14" value="14" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="15" value="15" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="16" value="16" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="17" value="17" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="18" value="18" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="19" value="19" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="20" value="20" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="21" value="21" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="22" value="22" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="23" value="23" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="24" value="24" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="01" value="01" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="02" value="02" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="03" value="03" />
-                      <Picker.Item
-                        style={styles.step3_timeSet_picker} label="04" value="04" />
-                    </Picker>
-                  </View>
+                  <Switch
+                    onValueChange={toggleSwitch}
+                    value={enabled}
+                    thumbColor={enabled ? thumbColorOn : thumbColorOff}
+                    trackColor={{ false: trackColorOff, true: trackColorOn }}
+                    ios_backgroundColor={trackColorOff}
+                    style={{ marginRight: 5, margin: 10 }}
+                  />
+                  <Text
+                    style={{
+                      color: "#484644",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                      alignSelf: "center",
+                      marginHorizontal: 5,
+                    }}
+                  >
+                    {enabled ? "ON" : "OFF"}
+                  </Text>
+                </View>
+              </View>
+            </View>
+          )}
 
-                  <View style={{ flex: 0.45 }}>
-                    <Picker
-                      style={[styles.picker, {
-                        backgroundColor: "transparent",
-                        borderBottomColor: "#484644",
-                        borderBottomWidth: 1,
-                        borderBottomStyle: "solid",
-                        borderTopWidth: 0,
-                        borderRightWidth: 0,
-                        borderLeftWidth: 0,
-                      }]}
-                      selectedValue={Minute}
-                      onValueChange={(itemValue, itemIndex) =>
-                        setMinute(itemValue)
-                      }
-                    >
-                      <Picker.Item label="MM" value="0" />
-                      <Picker.Item label="00" value="00" />
-                      <Picker.Item label="05" value="05" />
-                      <Picker.Item label="10" value="10" />
-                      <Picker.Item label="15" value="15" />
-                      <Picker.Item label="20" value="20" />
-                      <Picker.Item label="25" value="25" />
-                      <Picker.Item label="30" value="30" />
-                      <Picker.Item label="35" value="35" />
-                      <Picker.Item label="40" value="40" />
-                      <Picker.Item label="45" value="45" />
-                      <Picker.Item label="50" value="50" />
-                      <Picker.Item label="55" value="55" />
-                    </Picker>
+          {setpnum === 3 && (
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                // marginTop: "1.5em",
+              }}
+            >
+              <View style={{ flexDirection: "column", flex: 0.7 }}>
+                <View>
+                  <Text
+                    style={{
+                      color: "#484644",
+                      fontFamily: "Comfortaa",
+                      fontSize: 16,
+                    }}
+                  >
+                    <Text Text style={{ fontWeight: "bold", fontSize: 20 }}>
+                      Time Setting
+                    </Text>{" "}
+                    <Text style={{ color: "#808080", fontSize: 20 }}>
+                      ( optional )
+                    </Text>
+                  </Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      flex: 1,
+                      // padding: "0.1em",
+                    }}
+                  >
+                    <View style={{ flex: 0.45 }}>
+                      <Picker
+                        style={[
+                          styles.picker,
+                          {
+                            backgroundColor: "transparent",
+                            borderBottomColor: "#484644",
+                            borderBottomWidth: 1,
+                            borderStyle: "solid",
+                            borderTopWidth: 0,
+                            borderRightWidth: 0,
+                            borderLeftWidth: 0,
+                          },
+                        ]}
+                        selectedValue={Hour}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setHour(itemValue)
+                        }
+                      >
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="HH"
+                          value="0"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="05"
+                          value="05"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="06"
+                          value="06"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="07"
+                          value="07"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="08"
+                          value="08"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="09"
+                          value="09"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="10"
+                          value="10"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="11"
+                          value="11"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="12"
+                          value="12"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="13"
+                          value="13"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="14"
+                          value="14"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="15"
+                          value="15"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="16"
+                          value="16"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="17"
+                          value="17"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="18"
+                          value="18"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="19"
+                          value="19"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="20"
+                          value="20"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="21"
+                          value="21"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="22"
+                          value="22"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="23"
+                          value="23"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="24"
+                          value="24"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="01"
+                          value="01"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="02"
+                          value="02"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="03"
+                          value="03"
+                        />
+                        <Picker.Item
+                          style={styles.step3_timeSet_picker}
+                          label="04"
+                          value="04"
+                        />
+                      </Picker>
+                    </View>
+
+                    <View style={{ flex: 0.45 }}>
+                      <Picker
+                        style={[
+                          styles.picker,
+                          {
+                            backgroundColor: "transparent",
+                            borderBottomColor: "#484644",
+                            borderBottomWidth: 1,
+                            borderBottomStyle: "solid",
+                            borderTopWidth: 0,
+                            borderRightWidth: 0,
+                            borderLeftWidth: 0,
+                          },
+                        ]}
+                        selectedValue={Minute}
+                        onValueChange={(itemValue, itemIndex) =>
+                          setMinute(itemValue)
+                        }
+                      >
+                        <Picker.Item label="MM" value="0" />
+                        <Picker.Item label="00" value="00" />
+                        <Picker.Item label="05" value="05" />
+                        <Picker.Item label="10" value="10" />
+                        <Picker.Item label="15" value="15" />
+                        <Picker.Item label="20" value="20" />
+                        <Picker.Item label="25" value="25" />
+                        <Picker.Item label="30" value="30" />
+                        <Picker.Item label="35" value="35" />
+                        <Picker.Item label="40" value="40" />
+                        <Picker.Item label="45" value="45" />
+                        <Picker.Item label="50" value="50" />
+                        <Picker.Item label="55" value="55" />
+                      </Picker>
+                    </View>
                   </View>
                 </View>
               </View>
             </View>
-          </View>
-        )}
+          )}
           {/* </ScrollView> */}
         </TouchableOpacity>
       </View>
 
       <View style={styles.buttoncont}>
-      <TouchableOpacity>
-
-        {/* {setpnum === 0 && (
-          <View style={{flexDirection: "row"}}>
-          <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
-          <Button style={styles.btn} onPress={onNext} textColor="black" labelStyle={styles.buttontxt}> Next</Button>
-          </View>
-        )} */}
+        {setpnum > 1 && (
+          <Button style={styles.btn} onPress={onBack}>
+            <Text style={styles.buttontxt}>Back</Text>
+          </Button>
+        )}
 
         {setpnum < 3 && (
-          <View style={{flexDirection: "row"}}>
-          <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
-          <Button style={styles.btn} onPress={onNext} textColor="black" labelStyle={styles.buttontxt}> Next</Button>
-          </View>
+          <Button style={styles.btn} onPress={onNext}>
+            <Text style={styles.buttontxt}>Next</Text>
+          </Button>
         )}
 
         {setpnum === 3 && (
-          <Button
-            style={styles.btn}
-            onPress={action}
-            textColor="black"
-            labelStyle={styles.buttontxt}>
-              Done
+          <Button style={styles.btn} onPress={action}>
+            <Text style={styles.buttontxt}>Done</Text>
           </Button>
         )}
-        </TouchableOpacity>
       </View>
       {/*
       <View style={styles.stepcont}></View>

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     paddingRight: "5%",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 20,
+    marginBottom: 20,
   },
   imgCont: {
     overflow: "hidden",
@@ -97,31 +97,22 @@ export default function Button_Gate_Img({
   const { colors } = useTheme();
 
   return (
-    <View
-      style={styles.wrap1}
-      >
-      <TouchableOpacity
-        style={styles.imgCont}
-        onPress={() => action.navigate(btnUrl)}
-      >
+    <View style={styles.wrap1}>
+      <TouchableOpacity style={styles.imgCont}>
         <MyImg
           style={styles.img}
           source={imgSrc}
           // source={require("../../assets/SC_Community/mv.png")}
-          />
+        />
       </TouchableOpacity>
-      <View
-        style={styles.quote_cont}>
-        <Text style={styles.quote_ttl}>
-          QUOTE OF THE DAY
-        </Text>
-        <Text style={styles.quote_txt}>
-          Everything   You Touch   Flourishes
-        </Text>
+      <View style={styles.quote_cont}>
+        <Text style={styles.quote_ttl}>QUOTE OF THE DAY</Text>
+        <Text style={styles.quote_txt}>Everything You Touch Flourishes</Text>
         <MyBgImg
           style={styles.stairsImg}
           resizeMode="contain"
-          source={require("../../assets/SC_Home/stairs.png")}/>
+          source={require("../../assets/SC_Home/stairs.png")}
+        />
       </View>
     </View>
   );

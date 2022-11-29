@@ -76,7 +76,7 @@ export default function Prof_Window({
         contentContainerStyle={containerStyle}
         style={{
           // backgroundColor: "pink"
-          height: "100%"
+          height: "100%",
         }}
       >
         <Menu_Popup close={hideModal} small={onClose} action={nav} />

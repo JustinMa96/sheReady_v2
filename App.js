@@ -41,13 +41,17 @@ export default function App() {
   }
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Test">
+      <Stack.Navigator initialRouteName="Landing">
         <Stack.Screen
           name="Landing"
           component={Landing}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Goals" component={Goal} />
         <Stack.Screen name="Wins" component={Wins} />
         <Stack.Screen name="Community" component={Community} />

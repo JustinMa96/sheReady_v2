@@ -13,8 +13,8 @@ import { useTheme } from "@react-navigation/native";
 //react native way of styling
 const styles = StyleSheet.create({
   btnBox: {
-    width: 110,
-    height: 70,
+    width: "35%",
+    height: 80,
     // margin: 10,
     borderRadius: 30,
     borderBottomLeftRadius: 0,
@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 3,
+    left: 40,
   },
   btn: {
     width: "100%",
     height: "100%",
-    margin: 0
+    margin: 0,
   },
   img: {
     resizeMode: "contain",
@@ -57,24 +58,27 @@ export default function IconBtn_Wins({
 
   return (
     <View
-      style={[styles.btnBox, {
-        backgroundColor: colors.card,
-      }]}
+      style={[
+        styles.btnBox,
+        {
+          backgroundColor: colors.card,
+        },
+      ]}
     >
-      <Button
-        style={styles.btn}
-        onPress={() => action.navigate(btnUrl)}
-      >
+      <Button style={styles.btn} onPress={() => action.navigate(btnUrl)}>
         <Image
           style={styles.img}
           source={require("../../assets/SC_Home/btn_exportwins.png")}
         />
       </Button>
       <Text
-        style={[styles.btnTxt, {
-          color: colors.text,
-        }]}
-        >
+        style={[
+          styles.btnTxt,
+          {
+            color: colors.text,
+          },
+        ]}
+      >
         {title}
       </Text>
     </View>
