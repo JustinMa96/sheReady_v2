@@ -110,5 +110,5 @@ userName={"Julissa Song"}
 date={"Nov, 28, 2022"}
 progress={"3/6"}
 wins={"Get the mentor's advice for 6 days in a row!"}
-img={require("../assets/SC_Settings/editprofie.png")}   
+img={require("../assets/SC_Settings/editprofie.png")}
 /> */}
