@@ -106,7 +106,9 @@ export default function Button_Gate_Img({
       >
         <MyImg
           style={styles.img}
-          source={imgSrc} />
+          source={imgSrc}
+          // source={require("../../assets/SC_Community/mv.png")}
+          />
       </TouchableOpacity>
       <View
         style={styles.quote_cont}>

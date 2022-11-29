@@ -115,6 +115,16 @@ export default function Goalwinscard(props) {
         </View>
 
         <View style={styles.container}>
+          <Checkbox
+            style={{
+
+            }}
+            color={"#000"}
+            status={checked ? "checked" : "unchecked"}
+            onPress={() => {
+              setChecked(!checked);
+            }}
+            />
           <Text style={styles.txt}>{props.taskName}</Text>
           <IconButton
             onPress={() => setOnExpand(!onExpand)}
@@ -135,6 +145,12 @@ export default function Goalwinscard(props) {
               Invite the mentor to participate in usability test
             </Text>
             <Checkbox
+              style={{
+                width: 20,
+                height: 20,
+                backgroundColor: "pink",
+                display: "flex"
+              }}
               color="white"
               status={checked ? "checked" : "unchecked"}
               onPress={() => {

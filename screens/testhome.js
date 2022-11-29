@@ -13,7 +13,7 @@ import { Button, IconButton, Checkbox } from "react-native-paper";
 import { Modal, Portal, Provider } from "react-native-paper";
 import { useTheme } from "@react-navigation/native";
 import Prof_Window from "../components/common/prof_window.js";
-import Button_Gate_Img from "../components/home/button_gate_img.js";
+import Button_Gate_Img from "../components/home/button_gate_img";
 import IconBtn_Goals from "../components/home/iconbtn_goals.js";
 import IconBtn_Wins from "../components/home/iconbtn_wins.js";
 import TaskPopup from "../components/home/taskPop.js"
@@ -156,7 +156,10 @@ var month = now.getMonthName();
 var year = now.getFullYear();
 var day = now.getDate();
 
-export default function Test({ navigation }) {
+export default function Test({
+  navigation,
+  imgSrc = require("../assets/SC_Home/mv1.png"),
+  }) {
   const { colors } = useTheme();
   const date = `${month} ${day}, ${year}  ${weekday}`;
   const [visible, setVisible] = React.useState(false);
@@ -191,7 +194,9 @@ export default function Test({ navigation }) {
 
             {/* Hazel */}
             <View style={styles.newscont}>
-              <Button_Gate_Img action={navigation}></Button_Gate_Img>
+              <Button_Gate_Img
+                source={imgSrc}
+                action={navigation}></Button_Gate_Img>
             </View>
 
             <View style={styles.taskcont}>
