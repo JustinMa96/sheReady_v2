@@ -11,11 +11,11 @@ import {
   Alert,
 } from "react-native";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc,setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import MyTextInput from "../components/common/mytextinput";
 import GateButton from "../components/common/gatebutton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { auth,db } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 
 const styles = StyleSheet.create({
   headerTxt: {
@@ -53,21 +53,19 @@ export default function Signup({ navigation }) {
           email,
           userName,
           password
-        ).then(async () => {
-          try {
-            const docRef = await doc(
-              setDoc(db, "users", auth.currentUser.uid),
-              {
-                uid: auth.currentUser.uid,
-                displayName: userName,
-                email: email,
-              }
-            );
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
-        });
+        );
+        console.log(user);
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            displayName: userName,
+            email: email,
+            password: password,
+            firstUse: true,
+          });
+          console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
         console.log(user);
         Alert.alert(
           "Register Account",

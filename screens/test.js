@@ -1,11 +1,14 @@
 import React from "react";
 import { Text, View, SafeAreaView } from "react-native";
+import TaskCard from "../components/home/taskcard";
 
 export default function Test() {
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+    >
       <View>
-        <Text>Page</Text>
+        <TaskCard />
       </View>
     </SafeAreaView>
   );
