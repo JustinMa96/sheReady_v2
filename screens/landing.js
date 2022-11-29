@@ -6,6 +6,7 @@ import TextButton from "../components/common/textbutton";
 
 const styles = StyleSheet.create({
   container: {
+    background: "#efe1d5",
     height: "100%",
   },
 
@@ -32,7 +33,7 @@ export default function Landing({ navigation }) {
         <View style={styles.imgCont}>
           <Image
             style={styles.img1}
-            source={require("../assets/Landing/SheReady.gif")}
+            source={require("../assets/SC_Landing/SheReady.gif")}
           />
         </View>
 

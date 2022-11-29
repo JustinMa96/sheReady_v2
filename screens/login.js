@@ -92,7 +92,7 @@ export default function Login({ navigation }) {
               </Text>
             </Button>
           </View>
-          <GateButton txt="Sign In" path={"Home"} action={navigation} />
+          <GateButton txt="Sign In" path={"Home"} action={()=>navigation.navigate("Home")} />
           <View style={styles.separator}>
             <View style={styles.hairline} />
             <View style={styles.circle} />

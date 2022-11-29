@@ -21,7 +21,7 @@ export default function Logo() {
     <View style={styles.logoCont}>
       <Image
         style={styles.logoImg}
-        source={require("../../assets/SignUp/logo.png")}
+        source={require("../../assets/SC_SignUp/logo.png")}
       />
     </View>
   );

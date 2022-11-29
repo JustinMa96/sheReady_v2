@@ -13,7 +13,6 @@ import Shop from "./screens/shop";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
 import Test from "./screens/test";
-// d
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +32,7 @@ const MyTheme = {
 export default function App() {
   const [fontsLoaded] = useFonts({
     Leky: require("./assets/fonts/LekyCalgriaPersonalUse-ywJRd.ttf"),
-    Comfortaa: require("./assets/fonts/Ubuntu-Light.ttf"),
+    Comfortaa: require("./assets/fonts/Comfortaa-Regular.ttf"),
     South: require("./assets/fonts/SouthEpic-Decorative.otf"),
   });
 
