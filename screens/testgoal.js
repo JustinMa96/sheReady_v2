@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, SafeAreaView } from "react-native";
 
-export default function Testgoal() {
+export default function Test() {
   return (
     <SafeAreaView>
       <View>

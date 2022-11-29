@@ -11,58 +11,61 @@ import {
 import { Button, Modal, Provider, Portal } from "react-native-paper";
 import { BlurView } from "expo-blur";
 import Goalwinscard from "../components/wins/goalwinscard.js";
-import ExportMethods from "../components/wins/exportMethods.js";
-import ProfWindow from "../components/common/profile.js";
+import Export_Selected from "../components/wins/export_selected.js";
+import Export_All from "../components/wins/export_all.js";
+import ProfWindow from "../components/common/prof_window.js";
 import Footer_Menu from "../components/common/footer_menu.js";
-import ButtonSecondary from "../components/common/button_Secondary";
-import BasicButton from "../components/common/button_Basic";
 // import { Colors } from "react-native/Libraries/NewAppScreen";
 import { useTheme } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
-  grid: {
-    flex: 1,
-    flexDirection: "row",
-    width: "100%",
-    position: "absolute",
-    bottom: 0,
-  },
+  // grid: {
+  //   flex: 1,
+  //   flexDirection: "row",
+  //   width: "100%",
+  //   position: "absolute",
+  //   bottom: 0,
+  // },
 
   containerStyle: {
     boxShadow: "rgb(0 0 0 / 30%) 0px 0px px",
     backgroundColor: "transparent",
     height: "100%",
     width: "100%",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
   },
 
-  btn: {
-    padding: 5,
-    width: "20%",
-    justifyContent: "center",
-  },
+  // btn: {
+  //   padding: 5,
+  //   width: "20%",
+  //   justifyContent: "center",
+  // },
 
-  icon: {
-    padding: "50%",
-    resizeMode: "contain",
-  },
+  // icon: {
+  //   padding: "50%",
+  //   resizeMode: "contain",
+  // },
 
-  text: {
-    color: "#484644",
-    padding: 2,
-    fontSize: "80%",
-    textAlign: "center",
-    fontFamily: "Comfortaa",
-    fontWeight: "bold",
-  },
+  // text: {
+  //   color: "#484644",
+  //   padding: 2,
+  //   fontSize: "80%",
+  //   textAlign: "center",
+  //   fontFamily: "Comfortaa",
+  //   fontWeight: "bold",
+  // },
 
-  texton: {
-    color: "#484644",
-    padding: 2,
-    fontSize: "80%",
-    textAlign: "center",
-    fontFamily: "Comfortaa",
-    fontWeight: "bold",
-  },
+  // texton: {
+  //   color: "#484644",
+  //   padding: 2,
+  //   fontSize: "80%",
+  //   textAlign: "center",
+  //   fontFamily: "Comfortaa",
+  //   fontWeight: "bold",
+  // },
 
   scroll: {
     overflow: "hidden",
@@ -70,13 +73,10 @@ const styles = StyleSheet.create({
 
   btnbox: {
     width: 220,
-    // height: 220,
     marginTop: 40,
-    display: "grid",
-    gridTemplateColumns: "110px 110px",
-    gridrow: "auto auto",
-    gridColumnGap: "5px",
-    gridRowGap: "10px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 
   methodbtn_1: {
@@ -90,18 +90,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  expBtnCont: {
-    width: "70%",
+  expBtn_cont: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    backgroundColor: "#F3EAE2",
+    height: 60,
+    paddingTop: 10,
+    marginTop: 10,
+  },
+
+  expBtn_box: {
+    width: "80%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-
-  exportAllBtn: {
-    // flex: 1,
-    width: 85,
-    height: 27,
+    backgroundColor: "transparent"
   },
 
   exportText_1: {
@@ -282,20 +289,15 @@ export default function Test({ navigation }) {
           </View>
 
           <View
-            style={styles.expBtnCont}
-            >
-            <ExportMethods
-              style={styles.exportBtn}
-              action={showModal} />
-            <BasicButton
-                style={[styles.exportAllBtn, {
-                  width: 85,
-                  height: 21,
-                }]}
-                // style={styles.exportAllBtn}
-                title="Export ALL"
-                onPress={() => navigation.navigate('Test')}>
-            </BasicButton>
+            style={styles.expBtn_cont}>
+            <View
+              style={styles.expBtn_box}
+              >
+              <Export_Selected
+                action={showModal} />
+              <Export_All
+                action={showModal} />
+            </View>
           </View>
 
           <Footer_Menu action={navigation}></Footer_Menu>
@@ -309,8 +311,11 @@ export default function Test({ navigation }) {
             <BlurView
               blurType="light"
               style={{
-                height: "100%",
+                height: "120%",
                 justifyContent: "center",
+                // backgroundColor: "pink",
+                display: "flex",
+                marginTop: -50,
               }}>
               <View style={[styles.bggate_outside, {
                 backgroundColor: colors.text,
@@ -349,7 +354,7 @@ export default function Test({ navigation }) {
                       >
                         <Image
                           style={styles.img_1}
-                          source={require("../assets/svg/pdf.svg")}
+                          source={require("../assets/SC_Wins/export_pdf.png")}
                         ></Image>
                         <Text style={styles.btnText}>PDF</Text>
                       </TouchableOpacity>
@@ -362,7 +367,7 @@ export default function Test({ navigation }) {
                       >
                         <Image
                           style={styles.img_2}
-                          source={require("../assets/svg/email.svg")}
+                          source={require("../assets/SC_Wins/export_email.png")}
                         ></Image>
                         <Text style={styles.btnText}>Email</Text>
                       </TouchableOpacity>
