@@ -1111,12 +1111,11 @@ export default function TaskPopup({ action }) {
       <View style={styles.buttoncont}>
       <TouchableOpacity>
 
-        {/* {setpnum === 0 && (
+        {setpnum === 0 && (
           <View style={{flexDirection: "row"}}>
-          <Button style={styles.btn} onPress={onBack} textColor="black" labelStyle={styles.buttontxt}>Back</Button>
           <Button style={styles.btn} onPress={onNext} textColor="black" labelStyle={styles.buttontxt}> Next</Button>
           </View>
-        )} */}
+        )}
 
         {setpnum < 3 && (
           <View style={{flexDirection: "row"}}>
