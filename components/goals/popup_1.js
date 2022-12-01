@@ -1,15 +1,9 @@
 import * as React from "react";
-import {
-  Modal,
-  Text,
-  Button,
-} from "react-native-paper";
-import { StyleSheet, TouchableOpacity, Image} from "react-native";
+import { Modal, Text, Button } from "react-native-paper";
+import { StyleSheet, TouchableOpacity, Image } from "react-native";
 import { View } from "react-native";
 import { Checkbox } from "react-native-paper";
 import PopUp2 from "./popup_2";
-
-
 
 const PopUp1 = ({ action }) => {
   const [visible, setVisible] = React.useState(true);
@@ -25,9 +19,9 @@ const PopUp1 = ({ action }) => {
   const [count, setCount] = React.useState(0);
 
   function adjustCount(amount) {
-    setCount(currentCount => {
-      return currentCount + amount
-    })
+    setCount((currentCount) => {
+      return currentCount + amount;
+    });
   }
 
   const containerStyle = {
@@ -42,9 +36,7 @@ const PopUp1 = ({ action }) => {
     alignSelf: "center",
   };
 
-  const containerPop2Style = {
-
-  };
+  const containerPop2Style = {};
 
   const styles = StyleSheet.create({
     title: {
@@ -74,7 +66,7 @@ const PopUp1 = ({ action }) => {
       borderColor: "#FFFFFF",
       height: 40,
       paddingHorizontal: 10,
-      paddingVertical:0,
+      paddingVertical: 0,
     },
 
     containerStyle2: {
@@ -95,32 +87,35 @@ const PopUp1 = ({ action }) => {
       borderBottomColor: "white",
       borderBottomWidth: 1,
       paddingHorizontal: 20,
-      paddingBottom: 20
-    }
-
-
+      paddingBottom: 20,
+    },
   });
 
   return (
     <View>
       <Modal
-          visible={visible}
-          onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
-        >
-        <View style={styles.containerStyle2} >
+        visible={visible}
+        onDismiss={hideModal}
+        contentContainerStyle={containerStyle}
+      >
+        <View style={styles.containerStyle2}>
           <Text style={styles.title}>Task</Text>
           <View style={styles.bottomLine}>
-          <Text style={[styles.text, {marginBottom: 10}]}> Get the mentor's advice </Text>
-          <Text style={styles.text}> Due: Nov, 28, 2022</Text>
+            <Text style={[styles.text, { marginBottom: 10 }]}>
+              {" "}
+              Get the mentor's advice{" "}
+            </Text>
+            <Text style={styles.text}> Due: Nov, 28, 2022</Text>
           </View>
 
           <View
             style={{
-              width: "100%"
+              width: "100%",
             }}
           >
-            <View style={[styles.bottomLine, {paddingBottom: 30, paddingTop: 30}]}>
+            <View
+              style={[styles.bottomLine, { paddingBottom: 30, paddingTop: 30 }]}
+            >
               <Text style={styles.textL}>Have you Finish</Text>
               <Text style={styles.textL}>your task for</Text>
               <Text style={styles.textL}>today?</Text>
@@ -133,51 +128,57 @@ const PopUp1 = ({ action }) => {
                 alignContent: "center",
               }}
             >
-
-          <View style={{flexDirection: "row", justifyContent: "space-around", alignContent: "center", marginVertical: 30, marginHorizontal: 60}}>
-            <TouchableOpacity onPress={()=>adjustCount(-1)}>
-               <Image
-                source={require("../../assets/Goal/minus.png")}
-                style={{width: 30, height: 30, }}
-              />
-            </TouchableOpacity>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  alignContent: "center",
+                  marginVertical: 30,
+                  marginHorizontal: 60,
+                }}
+              >
+                <TouchableOpacity onPress={() => adjustCount(-1)}>
+                  <Image
+                    source={require("../../assets/Goal/minus.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                </TouchableOpacity>
 
                 <Text style={styles.textL}>
-                {count}
-                <Text style={styles.text}> of</Text> 6
+                  {count}
+                  <Text style={styles.text}> of</Text> 6
                 </Text>
 
-            <TouchableOpacity onPress={()=>adjustCount(1)}>
-               <Image
-                source={require("../../assets/Goal/plus.png")}
-                style={{width: 30, height: 30, }}
-              />
-            </TouchableOpacity>
-          </View>
-
+                <TouchableOpacity onPress={() => adjustCount(1)}>
+                  <Image
+                    source={require("../../assets/Goal/plus.png")}
+                    style={{ width: 30, height: 30 }}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        <TouchableOpacity onPress={showPop2} onPressOut={hideModal}>
-          <Button
-            mode="outlined"
-            style={styles.button}
-            onPressOut={hideModal}
-            textColor="white"
-            // onPress={showPop2}
-          > Done
-          </Button>
-        </TouchableOpacity>
-          </View>
-        </Modal>
-        <Modal
-          visible={pop2Visible}
-          onDismiss={hideModal}
-          contentContainerStyle={containerPop2Style}
-        >
-          { pop2Visible? <PopUp2 action={()=>setPop2Visible(false)} /> : null }
-
+          <TouchableOpacity onPress={showPop2} onPressOut={hideModal}>
+            <Button
+              mode="outlined"
+              style={styles.button}
+              onPressOut={hideModal}
+              textColor="white"
+              // onPress={showPop2}
+            >
+              {" "}
+              Done
+            </Button>
+          </TouchableOpacity>
+        </View>
       </Modal>
-
+      <Modal
+        visible={pop2Visible}
+        onDismiss={hideModal}
+        contentContainerStyle={containerPop2Style}
+      >
+        {pop2Visible ? <PopUp2 action={() => setPop2Visible(false)} /> : null}
+      </Modal>
     </View>
   );
 };

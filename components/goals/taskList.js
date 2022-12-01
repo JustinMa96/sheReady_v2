@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignSelf: "flex-start",
     fontFamily: "Comfortaa",
-    marginBottom: 10
+    marginBottom: 10,
   },
   date: {
     color: "#484644",
@@ -84,7 +84,13 @@ export default function TaskList(props) {
 
         <View style={styles.progressBox}>
           <ProgressBar
-            style={{ width: "60vw", left: 5, height: 6, borderRadius: 20, backgroundColor: "white" }}
+            style={{
+              width: "60%",
+              left: 5,
+              height: 6,
+              borderRadius: 20,
+              backgroundColor: "white",
+            }}
             progress={props.progressNum}
             color="#484644"
           />

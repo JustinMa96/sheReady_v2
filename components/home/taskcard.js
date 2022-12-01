@@ -1,8 +1,17 @@
-import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  Image,
+  FlatList,
+} from "react-native";
 import React from "react";
 import { db } from "../../firebaseConfig";
 import { useTheme } from "@react-navigation/native";
 import { Button, IconButton, Checkbox } from "react-native-paper";
+import { doc, getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -35,13 +44,46 @@ var month = now.getMonthName();
 var year = now.getFullYear();
 var day = now.getDate();
 
-export default function TaskCard({ show, changeCard }) {
+export default function TaskCard({ show }) {
+  React.useEffect(() => {
+    const getUser = async () => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      console.log(user.uid);
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      const docs = docSnap.data();
+      console.log(docs.name);
+      setFirstUse(docs.firstuser);
+      console.log(docs.uncomplectedTasks);
+      setTaskList(docs.uncomplectedTasks);
+      console.log(taskList);
+    };
+    getUser();
+  }, []);
+
+  const [taskList, setTaskList] = React.useState("");
+
+  let listTasksView = (item) => {
+    return (
+      <View style={styles.selectline}>
+        <IconButton icon="circle-small" iconColor="#572516" size={20} />
+        <Text style={styles.selecttxt}>{item.taskName}</Text>
+        <Checkbox
+          color="white"
+          status={checked ? "checked" : "unchecked"}
+          onPress={() => {
+            setChecked(!checked);
+          }}
+        />
+      </View>
+    );
+  };
+
   const { colors } = useTheme();
   const date = `${month} ${day}, ${year}  ${weekday}`;
   const [firstUse, setFirstUse] = React.useState(true);
-  const changeCard = () => {
-    setFirstUse(!firstUse);
-  };
+
   const [checked, setChecked] = React.useState(false);
   return (
     <View
@@ -77,46 +119,12 @@ export default function TaskCard({ show, changeCard }) {
         </View>
       )}
       {firstUse === false && (
-        <View style={{ paddingTop: 20 }}>
-          <View style={styles.selectline}>
-            <IconButton icon="circle-small" iconColor="#572516" size={20} />
-            <Text style={styles.selecttxt}>
-              Invite the mentor to participate in usability test
-            </Text>
-            <Checkbox
-              color="white"
-              status={checked ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-            />
-          </View>
-          <View style={styles.selectline}>
-            <IconButton icon="circle-small" iconColor="#572516" size={20} />
-            <Text style={styles.selecttxt}>
-              Take up the facilitator role at team's workshops{" "}
-            </Text>
-            <Checkbox
-              color="white"
-              status={checked ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-            />
-          </View>
-          <View style={styles.selectline}>
-            <IconButton icon="circle-small" iconColor="#572516" size={20} />
-            <Text style={styles.selecttxt}>
-              Get the mentor's advice on how to explain design ideas{" "}
-            </Text>
-            <Checkbox
-              color="white"
-              status={checked ? "checked" : "unchecked"}
-              onPress={() => {
-                setChecked(!checked);
-              }}
-            />
-          </View>
+        <View style={{ flex: 1, paddingTop: 20 }}>
+          <FlatList
+            data={taskList}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => listTasksView(item)}
+          />
         </View>
       )}
     </View>
@@ -167,6 +175,7 @@ const styles = StyleSheet.create({
   selectline: {
     flexDirection: "row",
     paddingVertical: 10,
+    flex: 1,
   },
 
   selecttxt: {

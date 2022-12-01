@@ -267,7 +267,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TaskPopup({ action }) {
+export default function AddGoalPopup({ action }) {
   React.useEffect(() => {
     const getUser = async () => {
       const auth = getAuth();
@@ -283,7 +283,7 @@ export default function TaskPopup({ action }) {
   const { colors } = useTheme();
   const [currentJob, onCurrentJob] = React.useState();
   const [idealJob, onIdealJob] = React.useState();
-  const [setpnum, setStepNum] = React.useState(0);
+  const [setpnum, setStepNum] = React.useState(1);
   const [selectedCategory, setSelectedCategory] =
     React.useState("Pick a category");
   const [task, onTask] = React.useState();
@@ -304,9 +304,6 @@ export default function TaskPopup({ action }) {
     const user = auth.currentUser;
     console.log(user.uid);
     await updateDoc(doc(db, "users", user.uid), {
-      firstuser: false,
-      currentJob: currentJob,
-      idealJob: idealJob,
       goals: [
         {
           goalName: goal,

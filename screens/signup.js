@@ -59,6 +59,7 @@ export default function Signup({ navigation }) {
           name: userName,
           email: email,
           firstuser: true,
+          password: password,
         });
         Alert.alert(
           "Register Account",

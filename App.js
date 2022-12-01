@@ -41,7 +41,7 @@ export default function App() {
   }
   return (
     <NavigationContainer theme={MyTheme}>
-      <Stack.Navigator initialRouteName="Landing">
+      <Stack.Navigator initialRouteName="Goals">
         <Stack.Screen
           name="Landing"
           component={Landing}
@@ -52,7 +52,11 @@ export default function App() {
           component={Home}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Goals" component={Goal} />
+        <Stack.Screen
+          name="Goals"
+          component={Goal}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Wins" component={Wins} />
         <Stack.Screen name="Community" component={Community} />
         <Stack.Screen name="Shop" component={Shop} />
